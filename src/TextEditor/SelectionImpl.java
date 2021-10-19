@@ -10,7 +10,8 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public int getBeginIndex(){
-
+        // TODO
+        return null;
     }
 
     /**
@@ -22,7 +23,8 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public int getEndIndex(){
-
+        // TODO
+        return null;
     }
 
     /**
@@ -32,7 +34,8 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public int getBufferBeginIndex(){
-
+        // TODO
+        return null;
     }
 
     /**
@@ -43,7 +46,8 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public int getBufferEndIndex(){
-
+        // TODO
+        return null;
     }
 
     /**
@@ -54,7 +58,8 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public void setBeginIndex(int beginIndex){
-
+        // TODO
+        return null;
     }
 
     /**
@@ -65,6 +70,7 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public void setEndIndex(int endIndex){
-
+        // TODO
+        return null;
     }
 }
