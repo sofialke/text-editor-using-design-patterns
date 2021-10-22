@@ -7,6 +7,9 @@ public class EngineImpl implements Engine {
     /**
      * EngineImpl constructor that initializes Selection class using implemented Selection class constructor.
      */
+    public EngineImpl(){
+        SelectionImpl selection = new SelectionImpl();
+    }
     /**
      * Provides access to the selection control object
      *
@@ -84,6 +87,11 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void delete() {
+
+    }
+
+    @Override
+    public void execute(){
 
     }
 }
