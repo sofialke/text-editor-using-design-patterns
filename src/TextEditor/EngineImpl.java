@@ -3,12 +3,15 @@ package TextEditor;
 public class EngineImpl implements Engine {
 
     private StringBuilder buffer;
+    private String clipboard;
 
     /**
      * EngineImpl constructor that initializes Selection class using implemented Selection class constructor.
      */
     public EngineImpl(){
         SelectionImpl selection = new SelectionImpl();
+        this.clipboard = "";
+        this.buffer = new StringBuilder();
     }
     /**
      * Provides access to the selection control object
@@ -18,7 +21,7 @@ public class EngineImpl implements Engine {
     @Override
     public Selection getSelection() {
         // TODO
-        return null;
+        return this.getSelection();
     }
 
     /**
@@ -28,8 +31,8 @@ public class EngineImpl implements Engine {
      */
     @Override
     public String getBufferContents() {
-        // TODO
-        return null;
+        
+        return this.buffer.toString();
     }
 
     /**
@@ -39,8 +42,8 @@ public class EngineImpl implements Engine {
      */
     @Override
     public String getClipboardContents() {
-        // TODO
-        return null;
+        
+        return this.clipboard;
     }
 
     /**
@@ -50,7 +53,11 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void cutSelectedText() {
-        // TODO
+        
+    	Selection sel = this.getSelection();
+    	String cutText = this.buffer.substring(sel.getBeginIndex(), sel.getEndIndex());
+    	this.buffer.delete(sel.getBeginIndex(), sel.getEndIndex());
+    	this.clipboard = cutText;
     }
 
     /**
@@ -60,7 +67,9 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void copySelectedText() {
-        // TODO
+        
+    	Selection sel = this.getSelection();
+    	this.clipboard = this.buffer.substring(sel.getBeginIndex(), sel.getEndIndex());
     }
 
     /**
@@ -69,7 +78,9 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void pasteClipboard() {
-        // TODO
+
+    	Selection sel = this.getSelection();
+    	this.buffer.replace(sel.getBeginIndex(), sel.getEndIndex(), this.clipboard);
     }
 
     /**
@@ -79,7 +90,9 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void insert(String s) {
-
+    	
+    	Selection sel = this.getSelection();
+    	this.buffer.replace(sel.getBeginIndex(), sel.getEndIndex(), s);
     }
 
     /**
@@ -87,12 +100,10 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void delete() {
-
+    	
+    	Selection sel = this.getSelection();
+    	this.buffer.delete(sel.getBeginIndex(), sel.getEndIndex());	
     }
 
-    @Override
-    public void execute(){
-
-    }
 }
 
