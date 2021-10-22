@@ -26,6 +26,7 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public int getBeginIndex(){
+
         return this.beginIndex;
     }
 
@@ -38,6 +39,7 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public int getEndIndex(){
+
         return this.endIndex;
     }
 
