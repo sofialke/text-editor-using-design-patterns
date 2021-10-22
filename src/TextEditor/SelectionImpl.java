@@ -26,7 +26,6 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public int getBeginIndex(){
-
         return this.beginIndex;
     }
 
