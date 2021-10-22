@@ -2,6 +2,22 @@ package TextEditor;
 
 public class SelectionImpl implements Selection{
 
+    private StringBuilder buffer;
+    private int beginIndex;
+    private int endIndex;
+    private int bufferBeginIndex;
+    private int bufferEndIndex;
+
+    /**
+     * Selection cunstructor which sets the beginIndex and endIndex to 0.
+     */
+    public SelectionImpl(){
+        this.beginIndex = 0;
+        this.endIndex = 0;
+        this.bufferBeginIndex = 0;
+        this.bufferEndIndex = 0;
+    }
+
     /**
      * Provides the index of the first character designated
      * by the selection.
@@ -10,8 +26,7 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public int getBeginIndex(){
-        // TODO
-        return null;
+        return this.beginIndex;
     }
 
     /**
@@ -23,8 +38,7 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public int getEndIndex(){
-        // TODO
-        return null;
+        return this.endIndex;
     }
 
     /**
@@ -34,8 +48,8 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public int getBufferBeginIndex(){
-        // TODO
-        return null;
+        // TODO for now buffer begin index will always be 0. In the future we will introduce a different, transparent approach.
+        return bufferBeginIndex;
     }
 
     /**
@@ -46,8 +60,8 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public int getBufferEndIndex(){
-        // TODO
-        return null;
+        // TODO for now buffer end index will be the last index of the buffer. In the future we will introduce a different, transparent approach.
+        return bufferEndIndex;
     }
 
     /**
@@ -57,9 +71,13 @@ public class SelectionImpl implements Selection{
      * @throws IndexOutOfBoundsException if the beginIndex is out of bounds
      */
     @Override
-    public void setBeginIndex(int beginIndex){
-        // TODO
-        return null;
+    public void setBeginIndex(int beginIndex) throws IndexOutOfBoundsException{
+        if(beginIndex <= this.endIndex){
+            this.beginIndex = beginIndex;
+        }else {
+            throw new IndexOutOfBoundsException("Begin index can't be bigger than end index");
+        }
+        return;
     }
 
     /**
@@ -70,7 +88,11 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public void setEndIndex(int endIndex){
-        // TODO
-        return null;
+        if(endIndex >= this.beginIndex){
+            this.endIndex = endIndex;
+        }else {
+            throw new IndexOutOfBoundsException("End index can't be smaller than end index");
+        }
+        return;
     }
 }
