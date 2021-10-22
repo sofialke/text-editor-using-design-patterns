@@ -58,6 +58,5 @@ public interface Engine {
      */
     void delete();
 
-    void execute();
 }
 
