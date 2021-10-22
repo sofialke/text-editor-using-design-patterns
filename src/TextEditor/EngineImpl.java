@@ -1,6 +1,12 @@
 package TextEditor;
 
 public class EngineImpl implements Engine {
+
+    private StringBuilder buffer;
+
+    /**
+     * EngineImpl constructor that initializes Selection class using implemented Selection class constructor.
+     */
     /**
      * Provides access to the selection control object
      *
