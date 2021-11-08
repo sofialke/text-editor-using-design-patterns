@@ -4,24 +4,26 @@ public class EngineImpl implements Engine {
 
     private StringBuilder buffer;
     private String clipboard;
+    private Selection selection; 
 
     /**
      * EngineImpl constructor that initializes Selection class using implemented Selection class constructor.
      */
     public EngineImpl(){
-        SelectionImpl selection = new SelectionImpl();
         this.clipboard = "";
         this.buffer = new StringBuilder();
+        selection = new SelectionImpl(buffer);
+
     }
     /**
      * Provides access to the selection control object
      *
      * @return the selection object
-     */
+     */ 
     @Override
     public Selection getSelection() {
         // TODO
-        return this.getSelection();
+        return selection;
     }
 
     /**

@@ -6,16 +6,15 @@ public class SelectionImpl implements Selection{
     private int beginIndex;
     private int endIndex;
     private int bufferBeginIndex;
-    private int bufferEndIndex;
 
     /**
      * Selection cunstructor which sets the beginIndex and endIndex to 0.
      */
-    public SelectionImpl(){
+    public SelectionImpl(StringBuilder buffer){
+    	this.buffer = buffer;
         this.beginIndex = 0;
         this.endIndex = 0;
         this.bufferBeginIndex = 0;
-        this.bufferEndIndex = 0;
     }
 
     /**
@@ -62,7 +61,7 @@ public class SelectionImpl implements Selection{
     @Override
     public int getBufferEndIndex(){
         // TODO for now buffer end index will be the last index of the buffer. In the future we will introduce a different, transparent approach.
-        return bufferEndIndex;
+        return buffer.length();
     }
 
     /**
