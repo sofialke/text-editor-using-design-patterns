@@ -4,9 +4,9 @@ package TextEditor;
  */
 
 public class CutCommand implements Command{
-    EngineImpl engine;
+    Engine engine;
 
-    public CutCommand(EngineImpl engine){
+    public CutCommand(Engine engine){
         this.engine = engine;
     }
 
