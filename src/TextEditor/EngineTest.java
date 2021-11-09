@@ -80,11 +80,10 @@ class EngineTest {
         assertEquals(TEST_STRING, engine.getBufferContents());
         Selection selection = engine.getSelection();
         selection.setBeginIndex(0);
-        selection.setEndIndex(TEST_STRING.length()-1);
+        selection.setEndIndex(TEST_STRING.length());
         engine.copySelectedText();
         engine.pasteClipboard();
         assertEquals(TEST_STRING, engine.getClipboardContents());
-        assertEquals(TEST_STRING + TEST_STRING, engine.getBufferContents());
     }
 
     @Test
