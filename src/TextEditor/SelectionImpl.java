@@ -72,8 +72,10 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public void setBeginIndex(int beginIndex) throws IndexOutOfBoundsException{
-        if(beginIndex <= this.endIndex){
+        if(beginIndex <= this.endIndex && beginIndex > 0){
             this.beginIndex = beginIndex;
+        }else if(beginIndex < 0){
+            throw new IndexOutOfBoundsException("Begin index can't be smaller than 0");
         }else {
             throw new IndexOutOfBoundsException("Begin index can't be bigger than end index");
         }
