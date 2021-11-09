@@ -27,8 +27,6 @@ public class SelectionTest {
         assertTrue(selection.getBeginIndex() <= selection.getEndIndex());
         assertTrue(selection.getBeginIndex() >= selection.getBufferBeginIndex());
         assertTrue(selection.getBeginIndex() <= selection.getBufferEndIndex());
-
-
     }
     
     @Test
@@ -41,7 +39,6 @@ public class SelectionTest {
         assertTrue(selection.getBeginIndex() <= selection.getEndIndex());
         assertTrue(selection.getEndIndex() >= selection.getBufferBeginIndex());
         assertTrue(selection.getEndIndex() <= selection.getBufferEndIndex());
-
     }
     
     @Test
@@ -76,6 +73,4 @@ public class SelectionTest {
         selection.setEndIndex(4);
         assertEquals(selection.getEndIndex(),4);    	
     }
-
-    
 }
