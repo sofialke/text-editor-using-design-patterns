@@ -13,6 +13,7 @@ class EngineTest {
     private static String TEST_STRING = "This is a test string that will be asserted";
     private static String EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX = "Begin index can't be bigger than end index";
     private static String EXCEPTION_MESSAGE_WRONG_END_INDEX = "End index can't be smaller than end index";
+    private static String EXCEPTION_MESSAGE_BEGIN_INDEX_SMALLER_THAN_ZERO = "Begin index can't be smaller than 0";
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
@@ -35,8 +36,7 @@ class EngineTest {
         engine.insert(TEST_STRING);
         assertEquals(TEST_STRING, engine.getBufferContents());
         Selection selection = engine.getSelection();
-        selection.setBeginIndex(0);
-        selection.setEndIndex(TEST_STRING.length()-1);
+        selection.setEndIndex(TEST_STRING.length());
         engine.delete();
         assertEquals("", engine.getBufferContents());
     }
@@ -45,8 +45,7 @@ class EngineTest {
     void getClipboardContents() {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
-        selection.setBeginIndex(0);
-        selection.setEndIndex(TEST_STRING.length()-1);
+        selection.setEndIndex(TEST_STRING.length());
         engine.copySelectedText();
         assertEquals(TEST_STRING, engine.getClipboardContents());
     }
@@ -55,8 +54,7 @@ class EngineTest {
     void cutSelectedText() {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
-        selection.setBeginIndex(0);
-        selection.setEndIndex(TEST_STRING.length()-1);
+        selection.setEndIndex(TEST_STRING.length());
         engine.cutSelectedText();
         assertEquals(TEST_STRING, engine.getClipboardContents());
         assertEquals("", engine.getBufferContents());
@@ -66,8 +64,7 @@ class EngineTest {
     void copySelectedText() {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
-        selection.setBeginIndex(0);
-        selection.setEndIndex(TEST_STRING.length()-1);
+        selection.setEndIndex(TEST_STRING.length());
         engine.copySelectedText();
         assertEquals(TEST_STRING, engine.getClipboardContents());
         assertEquals(TEST_STRING, engine.getBufferContents());
@@ -79,7 +76,6 @@ class EngineTest {
         engine.pasteClipboard();
         assertEquals(TEST_STRING, engine.getBufferContents());
         Selection selection = engine.getSelection();
-        selection.setBeginIndex(0);
         selection.setEndIndex(TEST_STRING.length());
         engine.copySelectedText();
         engine.pasteClipboard();
@@ -93,9 +89,10 @@ class EngineTest {
         //thrown correctly. the same for end Index @Tag("Robustness")
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
+        selection.setEndIndex(6);
         selection.setBeginIndex(5);
         Exception exception1 = assertThrows(IndexOutOfBoundsException.class, () -> selection.setEndIndex(1));
-        assertEquals(EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX, exception1.getMessage()); //TODO - define what should be a message of this exception
+        assertEquals(EXCEPTION_MESSAGE_WRONG_END_INDEX, exception1.getMessage()); //TODO - define what should be a message of this exception
     }
 
     @Test
@@ -107,7 +104,7 @@ class EngineTest {
         Selection selection = engine.getSelection();
         selection.setEndIndex(5);
         Exception exception2 = assertThrows(IndexOutOfBoundsException.class, () -> selection.setBeginIndex(6));
-        assertEquals("", exception2.getMessage()); //TODO - define what should be a message of this exception
+        assertEquals(EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX, exception2.getMessage()); //TODO - define what should be a message of this exception
     }
 
     @Test
@@ -118,7 +115,7 @@ class EngineTest {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         Exception exception1 = assertThrows(IndexOutOfBoundsException.class, () -> selection.setBeginIndex(-1));
-        assertEquals("", exception1.getMessage()); //TODO - define what should be a message of this exception
+        assertEquals(EXCEPTION_MESSAGE_BEGIN_INDEX_SMALLER_THAN_ZERO, exception1.getMessage()); //TODO - define what should be a message of this exception
     }
 
     @Test
@@ -129,7 +126,7 @@ class EngineTest {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         Exception exception = assertThrows(IndexOutOfBoundsException.class, () ->
-                selection.setBeginIndex(TEST_STRING.length()+1));
+                selection.setEndIndex(-1));
         assertEquals(EXCEPTION_MESSAGE_WRONG_END_INDEX, exception.getMessage()); //TODO- -define what should be a message of this exception
     }
 }
