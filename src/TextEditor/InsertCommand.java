@@ -4,10 +4,10 @@ package TextEditor;
  */
 
 public class InsertCommand implements Command{
-    EngineImpl engine;
+    Engine engine;
 	private String s;
 
-    public InsertCommand(EngineImpl engine, String s){
+    public InsertCommand(Engine engine, String s){
         this.engine = engine;
         this.s = s;
     }
