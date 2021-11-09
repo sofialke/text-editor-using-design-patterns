@@ -20,6 +20,7 @@ public class SelectionTest {
         Selection selection = engine.getSelection();
         assertEquals(selection.getBufferBeginIndex(),selection.getBeginIndex(),selection.getEndIndex());
         engine.insert(TEST_STRING);
+        selection.setEndIndex(6);
         selection.setBeginIndex(4);
         assertEquals(selection.getBeginIndex(),4);
         //these?
@@ -63,6 +64,7 @@ public class SelectionTest {
     void setBeginIndex() {
         Selection selection = engine.getSelection();
         engine.insert(TEST_STRING);
+        selection.setEndIndex(6);
         selection.setBeginIndex(4);
         assertEquals(selection.getBeginIndex(),4);    	
     }
