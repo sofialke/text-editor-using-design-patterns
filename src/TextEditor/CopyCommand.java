@@ -4,9 +4,9 @@ package TextEditor;
  */
 
 public class CopyCommand implements Command{
-    EngineImpl engine;
+    Engine engine;
 
-    public CopyCommand(EngineImpl engine){
+    public CopyCommand(Engine engine){
         this.engine = engine;
     }
 
