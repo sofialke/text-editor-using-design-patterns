@@ -4,9 +4,9 @@ package TextEditor;
  */
 
 public class PasteCommand implements Command{
-    EngineImpl engine;
+    Engine engine;
 
-    public PasteCommand(EngineImpl engine){
+    public PasteCommand(Engine engine){
         this.engine = engine;
     }
 
