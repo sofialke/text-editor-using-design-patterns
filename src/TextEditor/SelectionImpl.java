@@ -77,7 +77,6 @@ public class SelectionImpl implements Selection{
         }else {
             throw new IndexOutOfBoundsException("Begin index can't be bigger than end index");
         }
-        return;
     }
 
     /**
@@ -93,6 +92,5 @@ public class SelectionImpl implements Selection{
         }else {
             throw new IndexOutOfBoundsException("End index can't be smaller than end index");
         }
-        return;
     }
 }
