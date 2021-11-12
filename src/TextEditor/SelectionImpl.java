@@ -76,6 +76,8 @@ public class SelectionImpl implements Selection{
             this.beginIndex = beginIndex;
         }else if(beginIndex < 0){
             throw new IndexOutOfBoundsException("Begin index can't be smaller than 0");
+        }else if(beginIndex < bufferBeginIndex){
+            throw new IndexOutOfBoundsException("Begin index can't be smaller than begin buffer index");
         }else {
             throw new IndexOutOfBoundsException("Begin index can't be bigger than end index");
         }
