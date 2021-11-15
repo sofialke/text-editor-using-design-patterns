@@ -13,7 +13,11 @@ public class InsertCommand implements Command{
     }
 
     public void execute(){
-        engine.insert(s);
+        engine.insert(s);        
+    }
+    
+    public InsertMemento getMemento() {
+    	return new InsertMemento(s);
     }
 
 }
