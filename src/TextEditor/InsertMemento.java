@@ -2,20 +2,18 @@ package TextEditor;
 
 public class InsertMemento {
 	
-	private String s;
+	private String textThatWasInserted;
 	
-	public InsertMemento(String s) {
-		this.s = s;
+	public InsertMemento(String textThatWasInserted) {
+		this.textThatWasInserted = textThatWasInserted;
 	}
 	
 	public String getText() {
-		return s;
+		return textThatWasInserted;
 	}
 	
-	public void setText(String s) {
-		this.s = s;
+	public void setText(String textThatWasInserted) {
+		this.textThatWasInserted = textThatWasInserted;
 	}
-	
-
 
 }
