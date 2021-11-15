@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Recorder {
 		
 	private InsertMemento memento;
-	private InsertCommand command;
+	private Command command;
 
 	/**
 	 * Recorder initializer with parameters.
@@ -13,11 +13,16 @@ public class Recorder {
 	 * @param command
 	 * @param memento
 	 */
-	public Recorder(InsertCommand command, InsertMemento memento) {
+	public Recorder(Command command, InsertMemento memento) {
 		Objects.requireNonNull(command);
 		Objects.requireNonNull(memento);
 		this.command = command;
 		this.memento = memento;
+	}
+
+	public Recorder(Command command) {
+		Objects.requireNonNull(command);
+		this.command = command;
 	}
 
 	/**
@@ -30,9 +35,7 @@ public class Recorder {
 		this.memento = command.getMemento();
 	}
 
-	
-	
-	
-	
-
+	public void execute(){
+		this.command.execute();
+	}
 }
