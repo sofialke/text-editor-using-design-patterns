@@ -16,6 +16,23 @@ public class SelectionTest {
     }
     
     @Test
+    void getBufferBeginIndex() {
+        Selection selection = engine.getSelection();
+        assertEquals(selection.getBufferBeginIndex(),0);
+        engine.insert(TEST_STRING);
+        assertEquals(selection.getBufferBeginIndex(),0);
+    }
+    
+    
+    @Test
+    void getBufferEndIndex() {
+        Selection selection = engine.getSelection();
+        assertEquals(selection.getBufferEndIndex(),0);
+        engine.insert(TEST_STRING);
+        assertEquals(selection.getBufferEndIndex(),TEST_STRING.length());
+    }
+    
+    @Test
     void getBeginIndex() {
         Selection selection = engine.getSelection();
         assertEquals(selection.getBufferBeginIndex(),selection.getBeginIndex(),selection.getEndIndex());
@@ -41,21 +58,7 @@ public class SelectionTest {
         assertTrue(selection.getEndIndex() <= selection.getBufferEndIndex());
     }
     
-    @Test
-    void getBufferBeginIndex() {
-        Selection selection = engine.getSelection();
-        assertEquals(selection.getBufferBeginIndex(),0);
-        engine.insert(TEST_STRING);
-        assertEquals(selection.getBufferBeginIndex(),0);
-    }
-    
-    @Test
-    void getBufferEndIndex() {
-        Selection selection = engine.getSelection();
-        assertEquals(selection.getBufferEndIndex(),0);
-        engine.insert(TEST_STRING);
-        assertEquals(selection.getBufferEndIndex(),TEST_STRING.length());
-    }
+
     
     @Test 
     void setBeginIndex() {
