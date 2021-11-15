@@ -35,14 +35,15 @@ class EngineTest {
     void getBufferContents() {
         engine.insert(TEST_STRING);
         assertEquals(TEST_STRING, engine.getBufferContents());
-        Selection selection = engine.getSelection();
-        selection.setEndIndex(TEST_STRING.length());
     }
     
     @Test 
     void deleteBuffer() {
-    	engine.delete();
-        assertEquals("", engine.getBufferContents());
+    	 engine.insert(TEST_STRING);
+         Selection selection = engine.getSelection();
+         selection.setEndIndex(TEST_STRING.length());
+     	 engine.delete();
+         assertEquals("", engine.getBufferContents());
     	}
 
     @Test
