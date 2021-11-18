@@ -47,7 +47,7 @@ public class Invoker {
     public void setEndIndex(Integer index){
         this.endIndex = index;
     }
-    public void execute(Command command){
-        command.execute();
+    public void execute(String keyName){
+        mapOfCOmmands.get(keyName).execute();
     }
 }
