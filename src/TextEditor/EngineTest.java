@@ -87,6 +87,14 @@ class EngineTest {
         engine.pasteClipboard();
         assertEquals(TEST_STRING, engine.getClipboardContents());
     }
+    
+    @Test
+    void selectionChange() {
+    	engine.insert(TEST_STRING);
+    	engine.selectionChange(3, 9);
+        assertEquals(3, engine.getSelection().getBeginIndex());
+        assertEquals(9, engine.getSelection().getEndIndex());
+    }
 
     @Test
     @Tag("Robustness") //needs importing a tag junit library

@@ -110,8 +110,8 @@ public class EngineImpl implements Engine {
     @Override
     public void selectionChange(int beginIndex, int endIndex) {
     	
-    	selection.setBeginIndex(beginIndex);
     	selection.setEndIndex(endIndex);
+    	selection.setBeginIndex(beginIndex);
     }
 
 }
