@@ -100,6 +100,19 @@ public class EngineImpl implements Engine {
     	
     	this.buffer.delete(selection.getBeginIndex(), selection.getEndIndex());	
     }
+    
+    /**
+     * Changes the selection indexes
+     *
+     * @param beginIndex the first index of the selection
+     * @param endIndex the last index of the selection
+     */
+    @Override
+    public void selectionChange(int beginIndex, int endIndex) {
+    	
+    	selection.setBeginIndex(beginIndex);
+    	selection.setEndIndex(endIndex);
+    }
 
 }
 
