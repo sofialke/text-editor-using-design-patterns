@@ -14,6 +14,8 @@ public class Invoker {
     private Engine engine;
     private String textToBeInserted;
     private Map<String,Command> mapOfCOmmands;
+    private Integer beginIndex;
+    private Integer endIndex;
 
     public Invoker(){
         engine = new EngineImpl();
@@ -27,5 +29,25 @@ public class Invoker {
 
     public String getTextToBeInserted(){
         return this.textToBeInserted;
+    }
+    public Integer getBeginIndex(){
+        return this.beginIndex;
+    }
+    public Integer getEndIndex(){
+        return this.endIndex;
+    }
+
+    public void setTextToBeInserted(String text){
+        this.textToBeInserted = text;
+    }
+
+    public void setBeginIndex(Integer index){
+        this.beginIndex = index;
+    }
+    public void setEndIndex(Integer index){
+        this.endIndex = index;
+    }
+    public void execute(Command command){
+        command.execute();
     }
 }
