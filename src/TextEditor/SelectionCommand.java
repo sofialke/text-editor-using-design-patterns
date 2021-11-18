@@ -1,8 +1,7 @@
 package TextEditor;
 
 /**
- * @author Usuario
- *
+ * Class that implements selection change command by implementing the Command interface.
  */
 public class SelectionCommand implements Command{
     private Engine engine;
