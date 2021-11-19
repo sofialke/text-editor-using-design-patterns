@@ -77,8 +77,10 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void pasteClipboard() {
-
+        Integer previousBeginIndex = this.selection.getBeginIndex();
     	this.buffer.replace(selection.getBeginIndex(), selection.getEndIndex(), this.clipboard);
+        this.selection.setEndIndex(previousBeginIndex + clipboard.length());
+        this.selection.setBeginIndex(previousBeginIndex + clipboard.length());
     }
 
     /**
@@ -88,8 +90,10 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void insert(String s) {
-    	
+    	Integer previousBeginIndex = this.selection.getBeginIndex();
     	this.buffer.replace(selection.getBeginIndex(), selection.getEndIndex(), s);
+        this.selection.setEndIndex(previousBeginIndex + s.length());
+        this.selection.setBeginIndex(previousBeginIndex + s.length());
     }
 
     /**
@@ -109,7 +113,8 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void selectionChange(int beginIndex, int endIndex) {
-    	
+    	selection.setBeginIndex(0);
+        selection.setEndIndex(0);
     	selection.setEndIndex(endIndex);
     	selection.setBeginIndex(beginIndex);
     }

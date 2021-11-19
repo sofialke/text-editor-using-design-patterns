@@ -31,49 +31,4 @@ public class SelectionTest {
         engine.insert(TEST_STRING);
         assertEquals(selection.getBufferEndIndex(),TEST_STRING.length());
     }
-    
-    @Test
-    void getBeginIndex() {
-        Selection selection = engine.getSelection();
-        assertEquals(selection.getBufferBeginIndex(),selection.getBeginIndex(),selection.getEndIndex());
-        engine.insert(TEST_STRING);
-        selection.setEndIndex(6);
-        selection.setBeginIndex(4);
-        assertEquals(selection.getBeginIndex(),4);
-        //these?
-        assertTrue(selection.getBeginIndex() <= selection.getEndIndex());
-        assertTrue(selection.getBeginIndex() >= selection.getBufferBeginIndex());
-        assertTrue(selection.getBeginIndex() <= selection.getBufferEndIndex());
-    }
-    
-    @Test
-    void getEndIndex() {
-        Selection selection = engine.getSelection();
-        assertEquals(selection.getBufferEndIndex(),selection.getBeginIndex(),selection.getEndIndex());
-        engine.insert(TEST_STRING);
-        selection.setEndIndex(4);;
-        assertEquals(selection.getEndIndex(),4);
-        assertTrue(selection.getBeginIndex() <= selection.getEndIndex());
-        assertTrue(selection.getEndIndex() >= selection.getBufferBeginIndex());
-        assertTrue(selection.getEndIndex() <= selection.getBufferEndIndex());
-    }
-    
-
-    
-    @Test 
-    void setBeginIndex() {
-        Selection selection = engine.getSelection();
-        engine.insert(TEST_STRING);
-        selection.setEndIndex(6);
-        selection.setBeginIndex(4);
-        assertEquals(selection.getBeginIndex(),4);    	
-    }
-    
-    @Test 
-    void setEndIndex() {
-        Selection selection = engine.getSelection();
-        engine.insert(TEST_STRING);
-        selection.setEndIndex(4);
-        assertEquals(selection.getEndIndex(),4);    	
-    }
 }
