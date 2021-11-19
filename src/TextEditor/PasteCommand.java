@@ -12,6 +12,9 @@ public class PasteCommand implements Command{
 
     public void execute(){
         engine.pasteClipboard();
+        
+       //recorder.save(Optional empty thing);
+
     }
 
 }

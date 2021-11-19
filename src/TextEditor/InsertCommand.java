@@ -3,7 +3,7 @@ package TextEditor;
  * Class that implements paste command by implementing the Command interface.
  */
 
-public class InsertCommand implements Command{
+public class InsertCommand implements Recordable{
     Engine engine;
     private Recorder recorder;
 	private String textToBeInserted;
@@ -21,11 +21,11 @@ public class InsertCommand implements Command{
         this.wasReplayed = false;
     }
     
-    public InsertMemento getMemento() {
+    public Memento getMemento() {
     	return new InsertMemento(this.textToBeInserted);
     }
 
-    public void setMemento(InsertMemento memento) {
+    public void setMemento(Memento memento) {
         this.wasReplayed = true;
         this.textToBeInserted = memento.getText();
     }

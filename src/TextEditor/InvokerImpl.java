@@ -16,21 +16,27 @@ public class InvokerImpl implements Invoker{
     private String textToBeInserted;
     private Map<String,Command> mapOfCOmmands;
     private Integer beginIndex = 0;
-    private Integer endIndex = 0; 
+    private Integer endIndex = 0;
 
     public InvokerImpl(Engine engineInput){
         engine = engineInput;
         mapOfCOmmands = new HashMap<>();
+        //QUITAR, HACER EN INVOKER TEST
+        //invoker.addCommand("I",new InsertCommand(engine, this, recorder))
         mapOfCOmmands.put("I", new InsertCommand(engine, this, recorder));
         mapOfCOmmands.put("CO", new CopyCommand(engine));
         mapOfCOmmands.put("CU", new CutCommand(engine));
-        mapOfCOmmands.put("S", new SelectionCommand(engine, this));
+        mapOfCOmmands.put("S", new SelectionCommand(engine, this, recorder));
         mapOfCOmmands.put("D", new CutCommand(engine));
         mapOfCOmmands.put("P", new PasteCommand(engine));
     }
 
     public String getTextToBeInserted(){
         return this.textToBeInserted;
+    }
+    
+    public void addCommand(Command c, String key) {
+    	mapOfCOmmands.put(key, c);
     }
 
     public Integer getBeginIndex(){
@@ -48,12 +54,12 @@ public class InvokerImpl implements Invoker{
 
     public void setBeginIndex(Integer index){
         this.beginIndex = index;
-        mapOfCOmmands.put("S", new SelectionCommand(engine, this));
+        mapOfCOmmands.put("S", new SelectionCommand(engine, this, recorder));
     }
 
     public void setEndIndex(Integer index){
         this.endIndex = index;
-        mapOfCOmmands.put("S", new SelectionCommand(engine, this));
+        mapOfCOmmands.put("S", new SelectionCommand(engine, this, recorder));
     }
 
     public void execute(String keyName){

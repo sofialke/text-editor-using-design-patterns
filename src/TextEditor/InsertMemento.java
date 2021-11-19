@@ -1,6 +1,6 @@
 package TextEditor;
 
-public class InsertMemento {
+public class InsertMemento implements Memento {
 	
 	private String textThatWasInserted;
 	

@@ -1,6 +1,6 @@
 package TextEditor;
 
-public class SelectionMemento {
+public class SelectionMemento implements Memento {
 	
 	private int beginIndex;
 	private int endIndex;
