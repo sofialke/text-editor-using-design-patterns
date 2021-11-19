@@ -41,6 +41,7 @@ class EngineTest {
     void deleteBuffer() {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
+        selection.setBeginIndex(0);
         selection.setEndIndex(TEST_STRING.length());
     	engine.delete();
         assertEquals("", engine.getBufferContents());
@@ -51,6 +52,7 @@ class EngineTest {
     void getClipboardContents() {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
+        selection.setBeginIndex(0);
         selection.setEndIndex(TEST_STRING.length());
         engine.copySelectedText();
         assertEquals(TEST_STRING, engine.getClipboardContents());
@@ -60,6 +62,7 @@ class EngineTest {
     void cutSelectedText() {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
+        selection.setBeginIndex(0);
         selection.setEndIndex(TEST_STRING.length());
         engine.cutSelectedText();
         assertEquals(TEST_STRING, engine.getClipboardContents());
@@ -70,7 +73,7 @@ class EngineTest {
     void copySelectedText() {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
-        selection.setEndIndex(TEST_STRING.length());
+        selection.setBeginIndex(0);
         engine.copySelectedText();
         assertEquals(TEST_STRING, engine.getClipboardContents());
         assertEquals(TEST_STRING, engine.getBufferContents());
@@ -82,6 +85,7 @@ class EngineTest {
         engine.pasteClipboard();
         assertEquals(TEST_STRING, engine.getBufferContents());
         Selection selection = engine.getSelection();
+        selection.setBeginIndex(0);
         selection.setEndIndex(TEST_STRING.length());
         engine.copySelectedText();
         engine.pasteClipboard();
@@ -97,15 +101,22 @@ class EngineTest {
     }
 
     @Test
+    void insertTextIntoTheBuffer(){
+        engine.insert(TEST_STRING);
+        assertEquals(TEST_STRING.length(), engine.getSelection().getBeginIndex());
+        assertEquals(TEST_STRING.length(), engine.getSelection().getEndIndex());
+        assertEquals(TEST_STRING, engine.getBufferContents());
+    }
+
+    @Test
     @Tag("Robustness") //needs importing a tag junit library
     void exceptionTestingForBeginIndexBeingBiggerThanEndIndex(){
         //Write a test class which puts a beginIndex value before the index value of a buffer and check if exception is
         //thrown correctly. the same for end Index @Tag("Robustness")
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
-        selection.setEndIndex(6);
-        selection.setBeginIndex(5);
-        Exception exception1 = assertThrows(IndexOutOfBoundsException.class, () -> selection.setEndIndex(1));
+        selection.setBeginIndex(1);
+        Exception exception1 = assertThrows(IndexOutOfBoundsException.class, () -> selection.setEndIndex(0));
         assertEquals(EXCEPTION_MESSAGE_WRONG_END_INDEX, exception1.getMessage()); //TODO - define what should be a message of this exception
     }
 
@@ -116,6 +127,7 @@ class EngineTest {
         //thrown correctly. the same for end Index @Tag("Robustness")
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
+        selection.setBeginIndex(0);
         selection.setEndIndex(5);
         Exception exception2 = assertThrows(IndexOutOfBoundsException.class, () -> selection.setBeginIndex(6));
         assertEquals(EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX, exception2.getMessage()); //TODO - define what should be a message of this exception
