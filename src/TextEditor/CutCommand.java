@@ -10,10 +10,10 @@ public class CutCommand implements Recordable{
     Engine engine;
     Recorder recorder;
 
-    public CutCommand(Engine engine){
+    public CutCommand(Engine engine, Invoker invoker, Recorder recorder){
         this.engine = engine;
         Optional<Memento> memento = Optional.empty();
-        this.recorder = new Recorder(this);
+        this.recorder = recorder;
     }
 
     public Optional<Memento> getMemento(){

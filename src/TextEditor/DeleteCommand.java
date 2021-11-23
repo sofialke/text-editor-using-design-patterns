@@ -10,10 +10,10 @@ public class DeleteCommand implements Recordable{
     Engine engine;
     Recorder recorder;
 
-    public DeleteCommand(Engine engine){
+    public DeleteCommand(Engine engine, Invoker invoker, Recorder recorder){
         this.engine = engine;
         Optional<Memento> memento = Optional.empty();
-        this.recorder = new Recorder(this);
+        this.recorder = recorder;
     }
 
     public Optional<Memento> getMemento(){

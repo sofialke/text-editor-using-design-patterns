@@ -10,10 +10,10 @@ public class PasteCommand implements Recordable{
     Engine engine;
     private Recorder recorder;
 
-    public PasteCommand(Engine engine){
+    public PasteCommand(Engine engine, Invoker invoker, Recorder recorder){
         this.engine = engine;
         Optional<Memento> memento = Optional.empty();
-        this.recorder = new Recorder(this);
+        this.recorder = recorder;
     }
 
     public Optional<Memento> getMemento(){

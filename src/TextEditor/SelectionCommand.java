@@ -12,9 +12,9 @@ public class SelectionCommand implements Recordable{
     private Integer endIndex;
     private Boolean wasReplayed = false;
 
-    public SelectionCommand(Engine engine, Invoker invoker){
+    public SelectionCommand(Engine engine, Invoker invoker, Recorder recorder){
     	this.engine = engine;
-    	this.recorder = new Recorder(this);
+        this.recorder = recorder;
     	this.beginIndex = invoker.getBeginIndex();
     	this.endIndex = invoker.getEndIndex();
 
@@ -25,16 +25,14 @@ public class SelectionCommand implements Recordable{
         recorder.save(this);
         this.wasReplayed = false;
     }
-    
-	@Override
+
 	public Optional<Memento> getMemento() {
 		return Optional.of(new SelectionMemento(this.beginIndex, this.endIndex));
 	}
-	
-	@Override
+
 	public void setMemento(Memento memento) {
 	    this.wasReplayed = true;
-	    this.beginIndex = ((SelectionMemento)memento).getBeginIndex(); 
+	    this.beginIndex = ((SelectionMemento)memento).getBeginIndex();
 	    this.endIndex = ((SelectionMemento)memento).getEndIndex();	  
 	}
 	 

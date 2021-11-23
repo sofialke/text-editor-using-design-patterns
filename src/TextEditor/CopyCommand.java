@@ -10,10 +10,10 @@ public class CopyCommand implements Recordable{
     Engine engine;
     Recorder recorder;
 
-    public CopyCommand(Engine engine){
+    public CopyCommand(Engine engine, Invoker invoker, Recorder recorder){
         this.engine = engine;
         Optional<Memento> memento = Optional.empty();
-        this.recorder = new Recorder(this);
+        this.recorder = recorder;
     }
 
     public Optional<Memento> getMemento(){

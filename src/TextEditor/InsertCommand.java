@@ -12,9 +12,9 @@ public class InsertCommand implements Recordable{
 	private String textToBeInserted;
     private Boolean wasReplayed = false;
 
-    public InsertCommand(Engine engine, Invoker invoker){
+    public InsertCommand(Engine engine, Invoker invoker, Recorder recorder){
         this.engine = engine;
-        this.recorder = new Recorder(this);
+        this.recorder = recorder;
         this.textToBeInserted = invoker.getTextToBeInserted();
     }
 
