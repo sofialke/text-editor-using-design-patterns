@@ -12,7 +12,6 @@ public class InvokerImpl implements Invoker{
     //that will be inserted. the map will have keys- I for Insert, D for Delete itp
 
     private Engine engine;
-    private Recorder recorder;
     private String textToBeInserted;
     private Map<String,Recordable> mapOfCOmmands;
     private Integer beginIndex = 0;
@@ -55,9 +54,5 @@ public class InvokerImpl implements Invoker{
 
     public void execute(String keyName){
         mapOfCOmmands.get(keyName).execute();
-    }
-
-    public Recorder getRecorder(){
-        return this.recorder;
     }
 }
