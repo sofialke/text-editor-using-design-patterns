@@ -1,4 +1,7 @@
 package TextEditor;
+
+import java.util.Optional;
+
 /**
  * Class that implements paste command by implementing the Command interface.
  */
@@ -9,9 +12,9 @@ public class InsertCommand implements Recordable{
 	private String textToBeInserted;
     private Boolean wasReplayed = false;
 
-    public InsertCommand(Engine engine, Invoker invoker, Recorder recorder){
+    public InsertCommand(Engine engine, Invoker invoker){
         this.engine = engine;
-        this.recorder = recorder;
+        this.recorder = new Recorder(this);
         this.textToBeInserted = invoker.getTextToBeInserted();
     }
 
@@ -20,11 +23,9 @@ public class InsertCommand implements Recordable{
         recorder.save(this);
         this.wasReplayed = false;
     }
-    
-    @Override
-    public InsertMemento getMemento() {
-    	
-       	return new InsertMemento(this.textToBeInserted);
+
+    public Optional<Memento> getMemento() {
+        return Optional.of(new InsertMemento(this.textToBeInserted));
     }
 
     @Override
