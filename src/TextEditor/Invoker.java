@@ -8,5 +8,6 @@ public interface Invoker {
     void setBeginIndex(Integer index);
     void setEndIndex(Integer index);
     void execute(String keyName);
-    void addCommand(String key, Command command);
+    void addCommand(String key, Recordable command);
+    Recorder getRecorder();
 }
