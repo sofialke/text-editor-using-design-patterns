@@ -5,14 +5,11 @@ import java.util.Optional;
 
 public class Recorder {
 		
-	private Memento memento;
+	private Optional<Memento> memento;
 	private Recordable command;
 
 	/**
-	 * Recorder initializer with parameters.
-	 * Preconditions - parameters cannot be null.
-	 * @param command
-	 * @param memento
+	 * Recorder initializer without parameters.
 	 */
 	public Recorder() {
 	}
@@ -29,7 +26,9 @@ public class Recorder {
 	}
 
 	public void replay(){
-		this.command.setMemento(memento);
+		if (memento.isPresent()){
+			this.command.setMemento(memento.get());
+		}
 		execute();
 	}
 
