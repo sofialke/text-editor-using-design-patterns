@@ -102,7 +102,8 @@ public class EngineImpl implements Engine {
     @Override
     public void delete() {
     	
-    	this.buffer.delete(selection.getBeginIndex(), selection.getEndIndex());	
+    	this.buffer.delete(selection.getBeginIndex(), selection.getEndIndex());
+        this.selection.setEndIndex(this.selection.getBeginIndex());
     }
     
     /**
