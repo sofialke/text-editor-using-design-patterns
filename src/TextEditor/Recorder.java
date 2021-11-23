@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class Recorder {
 		
-	private Optional<Memento> memento;
+	private Memento memento;
 	private Recordable command;
 
 	/**
@@ -14,9 +14,7 @@ public class Recorder {
 	 * @param command
 	 * @param memento
 	 */
-	public Recorder(Recordable command) {
-		Objects.requireNonNull(command);
-		this.command = command;
+	public Recorder() {
 	}
 
 	/**
@@ -28,6 +26,11 @@ public class Recorder {
 		Objects.requireNonNull(command);
 		this.memento = command.getMemento();
 		this.command = command;
+	}
+
+	public void replay(){
+		this.command.setMemento(memento);
+		execute();
 	}
 
 	public void execute(){
