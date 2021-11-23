@@ -10,7 +10,6 @@ public class SelectionCommand implements Recordable{
     private Integer endIndex;
     private Boolean wasReplayed = false;
 
-
     public SelectionCommand(Engine engine, Invoker invoker, Recorder recorder){
     	this.engine = engine;
     	this.recorder = recorder;
@@ -25,15 +24,16 @@ public class SelectionCommand implements Recordable{
         this.wasReplayed = false;
     }
     
-	
-	public Memento getMemento() { 
+	@Override
+	public SelectionMemento getMemento() { 
 		return new SelectionMemento(this.beginIndex, this.endIndex); 
 	}
-	  
+	
+	@Override
 	public void setMemento(Memento memento) {
 	    this.wasReplayed = true;
-	    this.beginIndex = memento.getBeginIndex(); 
-	    this.endIndex = memento.getEndIndex();	  
+	    this.beginIndex = ((SelectionMemento)memento).getBeginIndex(); 
+	    this.endIndex = ((SelectionMemento)memento).getEndIndex();	  
 	}
 	 
 

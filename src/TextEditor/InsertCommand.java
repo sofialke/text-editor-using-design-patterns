@@ -21,13 +21,16 @@ public class InsertCommand implements Recordable{
         this.wasReplayed = false;
     }
     
-    public Memento getMemento() {
-    	return new InsertMemento(this.textToBeInserted);
+    @Override
+    public InsertMemento getMemento() {
+    	
+       	return new InsertMemento(this.textToBeInserted);
     }
 
+    @Override
     public void setMemento(Memento memento) {
         this.wasReplayed = true;
-        this.textToBeInserted = memento.getText();
+        this.textToBeInserted = ((InsertMemento)memento).getText();
     }
 
 }
