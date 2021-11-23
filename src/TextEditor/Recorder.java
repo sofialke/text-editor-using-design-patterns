@@ -1,10 +1,11 @@
 package TextEditor;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class Recorder {
 		
-	private Memento memento;
+	private Optional<Memento> memento;
 	private Recordable command;
 
 	/**
@@ -13,13 +14,10 @@ public class Recorder {
 	 * @param command
 	 * @param memento
 	 */
-	public Recorder(Recordable command, Memento memento) {
+	public Recorder(Recordable command) {
 		Objects.requireNonNull(command);
-		Objects.requireNonNull(memento);
 		this.command = command;
-		this.memento = memento;
 	}
-
 
 	/**
 	 * A method to save a command.
@@ -31,8 +29,6 @@ public class Recorder {
 		this.memento = command.getMemento();
 		this.command = command;
 	}
-	
-
 
 	public void execute(){
 		this.command.execute();
