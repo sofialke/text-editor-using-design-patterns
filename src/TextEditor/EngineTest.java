@@ -47,6 +47,24 @@ class EngineTest {
         assertEquals("", engine.getBufferContents());
     	}
 
+    
+    @Test 
+    void deleteWithNoSelection() {
+        engine.insert(TEST_STRING);
+    	engine.delete();
+        assertEquals("This is a test string that will be asserte", engine.getBufferContents());
+        assertEquals(engine.getSelection().getBeginIndex(),engine.getSelection().getBufferEndIndex());
+        assertEquals(engine.getSelection().getEndIndex(),engine.getSelection().getBufferEndIndex());
+        assertEquals(engine.getSelection().getBeginIndex(),TEST_STRING.length()-1);
+
+        engine.selectionChange(4, 4);
+        int previousIndex = engine.getSelection().getBeginIndex();
+        engine.delete();
+        engine.delete();
+        assertEquals("Th is a test string that will be asserte", engine.getBufferContents());
+        assertEquals(engine.getSelection().getBeginIndex(),previousIndex-2);
+
+    }
 
     @Test
     void getClipboardContents() {

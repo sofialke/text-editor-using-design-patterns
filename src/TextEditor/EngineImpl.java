@@ -55,9 +55,9 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void cutSelectedText() {
-        
+    	
     	copySelectedText();
-    	this.buffer.delete(selection.getBeginIndex(), selection.getEndIndex());
+    	delete();
     }
 
     /**
@@ -102,8 +102,21 @@ public class EngineImpl implements Engine {
     @Override
     public void delete() {
     	
-    	this.buffer.delete(selection.getBeginIndex(), selection.getEndIndex());
-        this.selection.setEndIndex(this.selection.getBeginIndex());
+    	if (this.selection.getBeginIndex() == this.selection.getEndIndex()) {
+    		
+        	Integer previousBeginIndex = this.selection.getBeginIndex();
+    		this.buffer.delete((selection.getBeginIndex()-1), selection.getBeginIndex());
+    		this.selection.setBeginIndex(previousBeginIndex-1);
+            this.selection.setEndIndex(previousBeginIndex-1);
+
+    	}else {
+        	
+        	Integer previousBeginIndex = this.selection.getBeginIndex();
+        	this.buffer.delete(selection.getBeginIndex(), selection.getEndIndex());
+            this.selection.setEndIndex(previousBeginIndex);
+    		
+    	}
+
     }
     
     /**
