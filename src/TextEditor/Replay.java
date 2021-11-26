@@ -4,10 +4,10 @@ import java.util.Optional;
 public class Replay implements Recordable{
     Engine engine;
     Recorder recorder;
-    public Replay(Engine engine, Invoker invoker){
+    public Replay(Engine engine, Invoker invoker, Recorder recorder){
         this.engine = engine;
-        this.recorder = invoker.getRecorder();
-    }
+        this.recorder = recorder;
+        }
 
     public Optional<Memento> getMemento(){
         return Optional.empty();
