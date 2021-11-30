@@ -8,7 +8,7 @@ public class SelectionImpl implements Selection{
     private int bufferBeginIndex;
 
     /**
-     * Selection cunstructor which sets the beginIndex and endIndex to 0.
+     * Selection constructor which sets the beginIndex and endIndex to 0.
      */
     public SelectionImpl(StringBuilder buffer){
     	this.buffer = buffer;
@@ -21,7 +21,7 @@ public class SelectionImpl implements Selection{
      * Provides the index of the first character designated
      * by the selection.
      *
-     * @return
+     * @return the begin index
      */
     @Override
     public int getBeginIndex(){

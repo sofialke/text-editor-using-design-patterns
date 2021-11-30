@@ -3,31 +3,50 @@ package TextEditor;
 import java.util.Optional;
 
 /**
- * Class that implements paste command by implementing the Command interface.
+ * Class that implements paste command by implementing the Recordable interface.
  */
 
 public class PasteCommand implements Recordable{
     Engine engine;
     private Recorder recorder;
 
+    /**
+     * PasteCommand constructor that initializes a paste command instance
+     * 
+     * @param engine 
+     * @param invoker
+     * @param recorder
+     */
     public PasteCommand(Engine engine, Invoker invoker, Recorder recorder){
         this.engine = engine;
         Optional<Memento> memento = Optional.empty();
         this.recorder = recorder;
     }
-
+    
+    /**
+     * Executes the paste action in the engine and saves the command in the recorder
+     */
+    public void execute(){
+        engine.pasteClipboard();
+        recorder.save(this);
+    }
+    
+    /**
+     * Provides empty Optional memento object
+     * 
+     * @return empty Optional object
+     */
     public Optional<Memento> getMemento(){
         Optional<Memento> memento = Optional.empty();
         return memento;
     }
 
+    /**
+     * Implements the setMemento operation without any action since the paste command generates no memento
+     */
     public void setMemento(Memento memento){
 
     }
-
-    public void execute(){
-        engine.pasteClipboard();
-        recorder.save(this);
-    }
+    
 
 }
