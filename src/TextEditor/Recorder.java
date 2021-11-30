@@ -25,6 +25,9 @@ public class Recorder {
 		this.command = command;
 	}
 
+	/**
+	 * Replays the last command executed by using the corresponding memento object
+	 */
 	public void replay(){
 		if (memento.isPresent()){
 			this.command.setMemento(memento.get());
@@ -32,6 +35,9 @@ public class Recorder {
 		execute();
 	}
 
+	/**
+	 * Executes the command saved in the memento object
+	 */
 	public void execute(){
 		this.command.execute();
 	}
