@@ -182,8 +182,5 @@ public class InvokerTest {
     }
     
     //test replay with no memento commands 
-
-
-    //fix cut with no selection and delete at the beginning of the buffer
     
 }
