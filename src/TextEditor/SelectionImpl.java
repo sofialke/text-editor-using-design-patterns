@@ -8,7 +8,7 @@ public class SelectionImpl implements Selection{
     private int bufferBeginIndex;
 
     /**
-     * Selection cunstructor which sets the beginIndex and endIndex to 0.
+     * Selection constructor which sets the beginIndex and endIndex to 0.
      */
     public SelectionImpl(StringBuilder buffer){
     	this.buffer = buffer;
@@ -21,7 +21,7 @@ public class SelectionImpl implements Selection{
      * Provides the index of the first character designated
      * by the selection.
      *
-     * @return
+     * @return the begin index
      */
     @Override
     public int getBeginIndex(){
@@ -72,7 +72,7 @@ public class SelectionImpl implements Selection{
      */
     @Override
     public void setBeginIndex(int beginIndex) throws IndexOutOfBoundsException{
-        if(beginIndex <= this.endIndex && beginIndex > 0){
+        if(beginIndex <= this.endIndex && beginIndex >= 0){
             this.beginIndex = beginIndex;
         }else if(beginIndex < 0){
             throw new IndexOutOfBoundsException("Begin index can't be smaller than 0");
@@ -94,7 +94,7 @@ public class SelectionImpl implements Selection{
         if(endIndex >= this.beginIndex){
             this.endIndex = endIndex;
         }else {
-            throw new IndexOutOfBoundsException("End index can't be smaller than end index");
+            throw new IndexOutOfBoundsException("End index can't be smaller than begin index");
         }
     }
 }
