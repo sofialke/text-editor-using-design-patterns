@@ -52,6 +52,15 @@ public interface Engine {
      * @param s the text to insert
      */
     void insert(String s);
+    
+    /**
+     * Changes the selection indexes
+     *
+     * @param beginIndex the first index of the selection
+     * @param endIndex the last index of the selection
+     */
+    void selectionChange(int beginIndex, int endIndex);
+
 
     /**
      * Removes the contents of the selection in the buffer
