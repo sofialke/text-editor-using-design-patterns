@@ -12,7 +12,7 @@ class EngineTest {
     private Engine engine;
     private static String TEST_STRING = "This is a test string that will be asserted";
     private static String EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX = "Begin index can't be bigger than end index";
-    private static String EXCEPTION_MESSAGE_WRONG_END_INDEX = "End index can't be smaller than end index";
+    private static String EXCEPTION_MESSAGE_WRONG_END_INDEX = "End index can't be smaller than begin index";
     private static String EXCEPTION_MESSAGE_BEGIN_INDEX_SMALLER_THAN_ZERO = "Begin index can't be smaller than 0";
     private static String EXCEPTION_MESSAGE_EMPTY_SELECTION = "Selection cannot be empty";
     private static String EXCEPTION_MESSAGE_EMPTY_CLIPBOARD = "Clipboard cannot be empty";
