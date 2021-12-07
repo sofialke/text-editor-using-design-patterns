@@ -13,7 +13,6 @@ public class InvokerTest {
     private static String EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX = "Begin index can't be bigger than end index";
     private static String EXCEPTION_MESSAGE_WRONG_END_INDEX = "End index can't be smaller than end index";
     private static String EXCEPTION_MESSAGE_BEGIN_INDEX_SMALLER_THAN_ZERO = "Begin index can't be smaller than 0";
-    private static String EXCEPTION_MESSAGE_EMPTY_SELECTION = "Selection cannot be empty";
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
@@ -248,9 +247,9 @@ public class InvokerTest {
         invoker.addCommand("CU", new CutCommand(engine, this.invoker, this.recorder));
         invoker.execute("CU");
         invoker.addCommand("R", new Replay(engine, this.invoker, this.recorder));
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-        invoker.execute("R"));
-        assertEquals(EXCEPTION_MESSAGE_EMPTY_SELECTION, exception.getMessage()); 
-    }
+        invoker.execute("R");
+        String clipboardTest = engine.getClipboardContents();
+        assertEquals("This", clipboardTest);
+        assertEquals(" is a test string that will be asserted", engine.getBufferContents());    }
         
 }
