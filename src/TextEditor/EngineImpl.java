@@ -52,8 +52,6 @@ public class EngineImpl implements Engine {
      * Removes the text within the interval
      * specified by the selection control object,
      * from the buffer.
-     * 
-     * @throws IllegalArgumentException if the selection is empty
      */
     @Override
     public void cutSelectedText() throws IllegalArgumentException {
@@ -68,8 +66,6 @@ public class EngineImpl implements Engine {
      * Copies the text within the interval
      * specified by the selection control object
      * into the clipboard.
-     * 
-     * @throws IllegalArgumentException if the selection is empty
      */
     @Override
     public void copySelectedText() throws IllegalArgumentException {
@@ -81,8 +77,6 @@ public class EngineImpl implements Engine {
     /**
      * Replaces the text within the interval specified by the selection object with
      * the contents of the clipboard.
-     * 
-     * @throws IllegalArgumentException if clipboard is empty
      */
     @Override
     public void pasteClipboard() throws IllegalArgumentException {
@@ -115,8 +109,6 @@ public class EngineImpl implements Engine {
 
     /**
      * Removes the contents of the selection in the buffer
-     * 
-     * @throws IndexOutOfBoundsException if the selection is empty and at the beginning of the buffer 
      */
     @Override
     public void delete() throws IndexOutOfBoundsException {

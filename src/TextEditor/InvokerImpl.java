@@ -20,8 +20,7 @@ public class InvokerImpl implements Invoker{
     public InvokerImpl(Engine engineInput){
         this.engine = engineInput;
         mapOfCOmmands = new HashMap<>();
-        //QUITAR, HACER EN INVOKER TEST
-        //invoker.addCommand("I",new InsertCommand(engine, this, recorder))
+
     }
 
     public String getTextToBeInserted(){
