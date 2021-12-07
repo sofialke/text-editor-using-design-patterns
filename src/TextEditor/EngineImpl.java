@@ -163,5 +163,24 @@ public class EngineImpl implements Engine {
     	selection.setBeginIndex(beginIndex);
     }
 
+    /**
+     * Gets memento of the current state of the engine.
+     * @return Memento- state of the engine.
+     */
+    @Override
+    public Memento getMemento(){
+        return new EditorMemento(this.buffer, this.selection.getBeginIndex(), this.selection.getEndIndex());
+    }
+
+    /**
+     * Sets the state on the engine to be the state of the memento sent as a parameter.
+     * @param memento- state of the engine that will be set.
+     */
+    @Override
+    public void setMemento(Memento memento){
+        this.buffer = ((EditorMemento)memento).getBufferContent();
+        this.selectionChange(((EditorMemento)memento).getBeginIndex(), ((EditorMemento)memento).getEndIndex());
+    }
+
 }
 
