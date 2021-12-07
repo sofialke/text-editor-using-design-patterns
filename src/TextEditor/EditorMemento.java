@@ -2,22 +2,22 @@ package TextEditor;
 
 public class EditorMemento implements Memento{
 	
-	private String bufferContent;
+	private StringBuilder bufferContent;
 	private int beginIndex;
 	private int endIndex;
 	
-	public EditorMemento(String bufferContent, int beginIndex, int endIndex) {
+	public EditorMemento(StringBuilder bufferContent, int beginIndex, int endIndex) {
 		
 		this.bufferContent = bufferContent;
 		this.beginIndex = beginIndex;
 		this.endIndex = endIndex;		
 	}
 
-	public String getBufferContent() {
+	public StringBuilder getBufferContent() {
 		return bufferContent;
 	}
 
-	public void setBufferContent(String bufferContent) {
+	public void setBufferContent(StringBuilder bufferContent) {
 		this.bufferContent = bufferContent;
 	}
 
@@ -36,7 +36,5 @@ public class EditorMemento implements Memento{
 	public void setEndIndex(int endIndex) {
 		this.endIndex = endIndex;
 	}
-	
-	
 
 }
