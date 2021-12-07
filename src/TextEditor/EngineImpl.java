@@ -22,7 +22,7 @@ public class EngineImpl implements Engine {
      */ 
     @Override
     public Selection getSelection() {
-        // TODO
+        
         return selection;
     }
 
@@ -52,14 +52,10 @@ public class EngineImpl implements Engine {
      * Removes the text within the interval
      * specified by the selection control object,
      * from the buffer.
-     * 
-     * @throws IllegalArgumentException if the selection is empty
      */
     @Override
     public void cutSelectedText() throws IllegalArgumentException {
-    	if (selection.getBeginIndex()==selection.getEndIndex()) {
-            throw new IllegalArgumentException("Selection cannot be empty");
-    	}else {
+    	if (selection.getBeginIndex()!=selection.getEndIndex()) {
         	copySelectedText();
         	delete();
     	}
@@ -70,14 +66,10 @@ public class EngineImpl implements Engine {
      * Copies the text within the interval
      * specified by the selection control object
      * into the clipboard.
-     * 
-     * @throws IllegalArgumentException if the selection is empty
      */
     @Override
     public void copySelectedText() throws IllegalArgumentException {
-        if(selection.getBeginIndex()==selection.getEndIndex()) {
-            throw new IllegalArgumentException("Selection cannot be empty");
-        }else {
+        if(selection.getBeginIndex()!=selection.getEndIndex()) {
         	this.clipboard = this.buffer.substring(selection.getBeginIndex(), selection.getEndIndex());
         }
     }
@@ -85,14 +77,10 @@ public class EngineImpl implements Engine {
     /**
      * Replaces the text within the interval specified by the selection object with
      * the contents of the clipboard.
-     * 
-     * @throws IllegalArgumentException if clipboard is empty
      */
     @Override
     public void pasteClipboard() throws IllegalArgumentException {
-    	if (clipboard.isEmpty()) {
-            throw new IllegalArgumentException("Clipboard cannot be empty");
-    	}else {
+    	if (!clipboard.isEmpty()) {
             Integer previousBeginIndex = this.selection.getBeginIndex();
         	this.buffer.replace(selection.getBeginIndex(), selection.getEndIndex(), this.clipboard);
             this.selection.setEndIndex(previousBeginIndex + clipboard.length());
@@ -121,15 +109,11 @@ public class EngineImpl implements Engine {
 
     /**
      * Removes the contents of the selection in the buffer
-     * 
-     * @throws IndexOutOfBoundsException if the selection is empty and at the beginning of the buffer 
      */
     @Override
     public void delete() throws IndexOutOfBoundsException {
     	
-    	if(this.selection.getBeginIndex() == this.selection.getBufferBeginIndex() && this.selection.getBeginIndex() == this.selection.getEndIndex()) {
-    		throw new IndexOutOfBoundsException("You cannot delete at the beginning of the buffer");
-    	} else {
+    	if(this.selection.getEndIndex() != this.selection.getBufferBeginIndex()) {
     		
         	if (this.selection.getBeginIndex() == this.selection.getEndIndex()) {
         		
