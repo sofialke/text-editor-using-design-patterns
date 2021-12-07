@@ -13,6 +13,7 @@ public class InvokerTest {
     private static String EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX = "Begin index can't be bigger than end index";
     private static String EXCEPTION_MESSAGE_WRONG_END_INDEX = "End index can't be smaller than end index";
     private static String EXCEPTION_MESSAGE_BEGIN_INDEX_SMALLER_THAN_ZERO = "Begin index can't be smaller than 0";
+    private static String EXCEPTION_MESSAGE_EMPTY_SELECTION = "Selection cannot be empty";
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
@@ -165,9 +166,7 @@ public class InvokerTest {
         invoker.execute("R");
         Selection selection = engine.getSelection();
         assertEquals(selection.getBeginIndex(),0);     
-        assertEquals(selection.getEndIndex(),4);     
-              
-        //test replay with selection - what is even supposed to happen?
+        assertEquals(selection.getEndIndex(),4);               
     }
     
     @Test 
@@ -181,6 +180,77 @@ public class InvokerTest {
                
     }
     
-    //test replay with no memento commands 
+    @Test 
+    void testExecutingReplayDeleteCommand() {
+        invoker.setTextToBeInserted(TEST_STRING);
+        invoker.addCommand("I", new InsertCommand(engine, this.invoker, this.recorder));
+        invoker.execute("I");
+        invoker.setBeginIndex(4);
+        invoker.setEndIndex(7);
+        invoker.addCommand("S", new SelectionCommand(engine, this.invoker, this.recorder));
+        invoker.execute("S");
+        invoker.addCommand("D", new DeleteCommand(engine, this.invoker, this.recorder));
+        invoker.execute("D");   
+        assertEquals("This a test string that will be asserted",engine.getBufferContents());     
+        invoker.addCommand("R", new Replay(engine, this.invoker, this.recorder));
+        invoker.execute("R");        
+        assertEquals("Thi a test string that will be asserted",engine.getBufferContents());                  
+    }
     
+    @Test
+    void testExecutingReplayPasteCommand() {
+        invoker.setTextToBeInserted(TEST_STRING);
+        invoker.addCommand("I", new InsertCommand(engine, this.invoker, this.recorder));
+        invoker.execute("I");
+        invoker.setBeginIndex(0);
+        invoker.setEndIndex(4);
+        invoker.addCommand("S", new SelectionCommand(engine, this.invoker, this.recorder));
+        invoker.execute("S");
+        invoker.addCommand("C", new CopyCommand(engine, this.invoker, this.recorder));
+        invoker.execute("C");
+        invoker.setBeginIndex(engine.getSelection().getBufferEndIndex());
+        invoker.setEndIndex(engine.getSelection().getBufferEndIndex());
+        invoker.addCommand("S", new SelectionCommand(engine, this.invoker, this.recorder));
+        invoker.execute("S");
+        invoker.addCommand("P", new PasteCommand(engine, this.invoker, this.recorder));
+        invoker.execute("P");
+        invoker.addCommand("R", new Replay(engine, this.invoker, this.recorder));
+        invoker.execute("R"); 
+        assertEquals("This is a test string that will be assertedThisThis",engine.getBufferContents());
+    }
+    
+    @Test
+    void testExecutingReplayCopyCommand() {
+        invoker.setTextToBeInserted(TEST_STRING);
+        invoker.addCommand("I", new InsertCommand(engine, this.invoker, this.recorder));
+        invoker.execute("I");
+        invoker.setBeginIndex(0);
+        invoker.setEndIndex(4);
+        invoker.addCommand("S", new SelectionCommand(engine, this.invoker, this.recorder));
+        invoker.execute("S");
+        invoker.addCommand("C", new CopyCommand(engine, this.invoker, this.recorder));
+        invoker.execute("C");
+        invoker.addCommand("R", new Replay(engine, this.invoker, this.recorder));
+        invoker.execute("R"); 
+        String clipboardTest = engine.getClipboardContents();
+        assertEquals("This", clipboardTest);
+    }
+    
+    @Test
+    void testExecutingReplayCutCommand() {
+        invoker.setTextToBeInserted(TEST_STRING);
+        invoker.addCommand("I", new InsertCommand(engine, this.invoker, this.recorder));
+        invoker.execute("I");
+        invoker.setBeginIndex(0);
+        invoker.setEndIndex(4);
+        invoker.addCommand("S", new SelectionCommand(engine, this.invoker, this.recorder));
+        invoker.execute("S");
+        invoker.addCommand("CU", new CutCommand(engine, this.invoker, this.recorder));
+        invoker.execute("CU");
+        invoker.addCommand("R", new Replay(engine, this.invoker, this.recorder));
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+        invoker.execute("R"));
+        assertEquals(EXCEPTION_MESSAGE_EMPTY_SELECTION, exception.getMessage()); 
+    }
+        
 }
