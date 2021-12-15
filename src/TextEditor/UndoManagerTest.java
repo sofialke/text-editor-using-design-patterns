@@ -34,8 +34,9 @@ public class UndoManagerTest {
         invoker.addCommand("I", new InsertCommand(engine, this.invoker, this.recorder));
         invoker.execute("I");
         assertEquals(TEST_STRING,engine.getBufferContents());
+        undoManager.undo(engine);
         undoManager.redo(engine);
-        assertEquals(TEST_STRING+TEST_STRING,engine.getBufferContents());
+        assertEquals(TEST_STRING,engine.getBufferContents());
     }
 
     @Test
@@ -49,11 +50,9 @@ public class UndoManagerTest {
         invoker.execute("S");
         invoker.addCommand("D", new DeleteCommand(engine, this.invoker, this.recorder));
         invoker.execute("D");
-        invoker.setBeginIndex(0);
-        invoker.setEndIndex(2);
-        invoker.addCommand("S", new SelectionCommand(engine, this.invoker, this.recorder));
+        undoManager.undo(engine);
         undoManager.redo(engine);
-        assertEquals(" is a test string that will be asserted", engine.getBufferContents());
+        assertEquals("is is a test string that will be asserted", engine.getBufferContents());
     }
 
     @Test
@@ -72,6 +71,21 @@ public class UndoManagerTest {
     }
 
     @Test
+    void testUndoingCutCommand() {
+        invoker.setTextToBeInserted(TEST_STRING);
+        invoker.addCommand("I", new InsertCommand(engine, this.invoker, this.recorder));
+        invoker.execute("I");
+        invoker.setBeginIndex(0);
+        invoker.setEndIndex(2);
+        invoker.addCommand("S", new SelectionCommand(engine, this.invoker, this.recorder));
+        invoker.execute("S");
+        invoker.addCommand("CU", new CutCommand(engine, this.invoker, this.recorder));
+        invoker.execute("CU");
+        undoManager.undo(engine);
+        assertEquals(TEST_STRING, engine.getBufferContents());
+    }
+
+    @Test
     void testRedoingCutCommand() {
         invoker.setTextToBeInserted(TEST_STRING);
         invoker.addCommand("I", new InsertCommand(engine, this.invoker, this.recorder));
@@ -82,11 +96,9 @@ public class UndoManagerTest {
         invoker.execute("S");
         invoker.addCommand("CU", new CutCommand(engine, this.invoker, this.recorder));
         invoker.execute("CU");
-        invoker.setBeginIndex(0);
-        invoker.setEndIndex(2);
-        invoker.addCommand("S", new SelectionCommand(engine, this.invoker, this.recorder));
+        undoManager.undo(engine);
         undoManager.redo(engine);
-        assertEquals(" is a test string that will be asserted", engine.getBufferContents());
+        assertEquals("is is a test string that will be asserted", engine.getBufferContents());
     }
 
 
@@ -107,11 +119,9 @@ public class UndoManagerTest {
         invoker.execute("S");
         invoker.addCommand("P", new PasteCommand(engine, this.invoker, this.recorder));
         invoker.execute("P");
-        invoker.setBeginIndex(engine.getSelection().getBufferEndIndex());
-        invoker.setEndIndex(engine.getSelection().getBufferEndIndex());
-        invoker.addCommand("S", new SelectionCommand(engine, this.invoker, this.recorder));
+        undoManager.undo(engine);
         undoManager.redo(engine);
-        assertEquals(TEST_STRING+"ThisThis", engine.getBufferContents());
+        assertEquals(TEST_STRING+"This", engine.getBufferContents());
     }
 
     @Test
