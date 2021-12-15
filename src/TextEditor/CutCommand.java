@@ -41,7 +41,7 @@ public class CutCommand implements Recordable{
     }
 
     /**
-     * Implements the setMemento operation without any action since the copy command generates no memento
+     * Implements the setMemento operation without any action since the cut command generates no memento
      */
     public void setMemento(Memento memento){
 

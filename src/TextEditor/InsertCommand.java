@@ -3,14 +3,13 @@ package TextEditor;
 import java.util.Optional;
 
 /**
- * Class that implements paste command by implementing the Recordable interface.
+ * Class that implements insert command by implementing the Recordable interface.
  */
 
 public class InsertCommand implements Recordable{
     Engine engine;
     private Recorder recorder;
 	private String textToBeInserted;
-    private Boolean wasReplayed = false;
 
 
     /**
@@ -32,7 +31,6 @@ public class InsertCommand implements Recordable{
     public void execute(){
         engine.insert(this.textToBeInserted);
         recorder.save(this);
-        this.wasReplayed = false;
     }
 
     /**
@@ -51,7 +49,6 @@ public class InsertCommand implements Recordable{
      */
     @Override
     public void setMemento(Memento memento) {
-        this.wasReplayed = true;
         this.textToBeInserted = ((InsertMemento)memento).getText();
     }
 

@@ -3,7 +3,7 @@ package TextEditor;
 import java.util.Optional;
 
 /**
- * Class that implements paste command by implementing the Recordable interface.
+ * Class that implements delete command by implementing the Recordable interface.
  */
 
 public class DeleteCommand implements Recordable{

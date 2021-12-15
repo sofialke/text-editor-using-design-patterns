@@ -10,7 +10,6 @@ public class SelectionCommand implements Recordable{
     private Recorder recorder;
     private Integer beginIndex;
     private Integer endIndex;
-    private Boolean wasReplayed = false;
 
     /**
      * SelectioCommand constructor that initializes a selection change command
@@ -33,7 +32,6 @@ public class SelectionCommand implements Recordable{
     public void execute(){
         engine.selectionChange(this.beginIndex, this.endIndex);
         recorder.save(this);
-        this.wasReplayed = false;
     }
     
     /**
@@ -51,7 +49,6 @@ public class SelectionCommand implements Recordable{
      * @param memento the SelectionMemento to be changed 
      */
 	public void setMemento(Memento memento) {
-	    this.wasReplayed = true;
 	    this.beginIndex = ((SelectionMemento)memento).getBeginIndex();
 	    this.endIndex = ((SelectionMemento)memento).getEndIndex();	  
 	}
