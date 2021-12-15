@@ -9,6 +9,8 @@ public class EngineImpl implements Engine {
 
     /**
      * EngineImpl constructor that initializes Selection class using implemented Selection class constructor.
+     * 
+     * @param undoManager 
      */
     public EngineImpl(UndoManager undoManager){
         this.clipboard = "";
@@ -55,7 +57,7 @@ public class EngineImpl implements Engine {
      * from the buffer.
      */
     @Override
-    public void cutSelectedText() throws IllegalArgumentException {
+    public void cutSelectedText() {
         this.undoManager.store(this);
     	if (selection.getBeginIndex()!=selection.getEndIndex()) {
         	copySelectedText();
@@ -69,7 +71,7 @@ public class EngineImpl implements Engine {
      * into the clipboard.
      */
     @Override
-    public void copySelectedText() throws IllegalArgumentException {
+    public void copySelectedText() {
         if(selection.getBeginIndex()!=selection.getEndIndex()) {
         	this.clipboard = this.buffer.substring(selection.getBeginIndex(), selection.getEndIndex());
         }
@@ -80,7 +82,7 @@ public class EngineImpl implements Engine {
      * the contents of the clipboard.
      */
     @Override
-    public void pasteClipboard() throws IllegalArgumentException {
+    public void pasteClipboard() {
         this.undoManager.store(this);
     	if (!clipboard.isEmpty()) {
             Integer previousBeginIndex = this.selection.getBeginIndex();
@@ -113,7 +115,7 @@ public class EngineImpl implements Engine {
      * Removes the contents of the selection in the buffer
      */
     @Override
-    public void delete() throws IndexOutOfBoundsException {
+    public void delete() {
         this.undoManager.store(this);
     	
     	if(this.selection.getEndIndex() != this.selection.getBufferBeginIndex()) {
