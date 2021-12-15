@@ -241,6 +241,31 @@ public class InvokerTest {
         invoker.execute("R");
         String clipboardTest = engine.getClipboardContents();
         assertEquals("This", clipboardTest);
-        assertEquals(" is a test string that will be asserted", engine.getBufferContents());    }
+        assertEquals(" is a test string that will be asserted", engine.getBufferContents());    
+        }
+    
+    @Test
+    void testExecutingUndoCommand(){
+        invoker.setTextToBeInserted(TEST_STRING);
+        invoker.addCommand("I", new InsertCommand(engine, this.invoker, this.recorder));
+        invoker.execute("I");
+        assertEquals(TEST_STRING,engine.getBufferContents());
+        invoker.addCommand("U", new UndoCommand(engine, this.invoker, this.undoManager));
+        invoker.execute("U");
+        assertEquals("",engine.getBufferContents());
+    }
+    
+    @Test
+    void testExecutingRedoCommand(){
+        invoker.setTextToBeInserted(TEST_STRING);
+        invoker.addCommand("I", new InsertCommand(engine, this.invoker, this.recorder));
+        invoker.execute("I");
+        assertEquals(TEST_STRING,engine.getBufferContents());
+        invoker.addCommand("U", new UndoCommand(engine, this.invoker, this.undoManager));
+        invoker.execute("U");
+        invoker.addCommand("RE", new RedoCommand(engine, this.invoker, this.undoManager));
+        invoker.execute("RE");
+        assertEquals(TEST_STRING,engine.getBufferContents());
+    }
         
 }

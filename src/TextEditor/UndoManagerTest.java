@@ -144,4 +144,35 @@ public class UndoManagerTest {
         undoManager.undo(engine);
         assertEquals(TEST_STRING, engine.getBufferContents());
     }
+    
+    
+    @Test
+    void testMultipleUndoingAndRedoing(){
+        invoker.setTextToBeInserted(TEST_STRING);
+        invoker.addCommand("I", new InsertCommand(engine, this.invoker, this.recorder));
+        invoker.execute("I");
+        invoker.setTextToBeInserted("First undo test");
+        invoker.addCommand("I", new InsertCommand(engine, this.invoker, this.recorder));
+        invoker.execute("I");invoker.setTextToBeInserted("Second undo test");
+        invoker.addCommand("I", new InsertCommand(engine, this.invoker, this.recorder));
+        invoker.execute("I");
+        undoManager.undo(engine);
+        undoManager.undo(engine);
+        assertEquals(TEST_STRING,engine.getBufferContents());
+        undoManager.redo(engine);
+        undoManager.redo(engine);
+        assertEquals(TEST_STRING+"First undo test"+"Second undo test",engine.getBufferContents());
+    }
+    
+    @Test
+    void testWrongUndoingAndRedoing(){
+    	undoManager.undo(engine);
+        assertEquals("", engine.getBufferContents());
+        invoker.setTextToBeInserted(TEST_STRING);
+        invoker.addCommand("I", new InsertCommand(engine, this.invoker, this.recorder));
+        invoker.execute("I");
+        assertEquals(TEST_STRING,engine.getBufferContents());
+        undoManager.redo(engine);
+        assertEquals(TEST_STRING,engine.getBufferContents());
+    }
 }
