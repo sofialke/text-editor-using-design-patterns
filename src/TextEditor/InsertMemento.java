@@ -24,14 +24,5 @@ public class InsertMemento implements Memento {
 	public String getText() {
 		return textThatWasInserted;
 	}
-	
-	/**
-	 * Changes the value of the inserted text of the insert memento
-	 * 
-	 * @param textThatWasInserted inserted text of the insert memento
-	 */
-	public void setText(String textThatWasInserted) {
-		this.textThatWasInserted = textThatWasInserted;
-	}
 
 }
