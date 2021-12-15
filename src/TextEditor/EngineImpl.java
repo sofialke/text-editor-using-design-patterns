@@ -4,16 +4,17 @@ public class EngineImpl implements Engine {
 
     private StringBuilder buffer;
     private String clipboard;
-    private Selection selection; 
+    private Selection selection;
+    private UndoManager undoManager;
 
     /**
      * EngineImpl constructor that initializes Selection class using implemented Selection class constructor.
      */
-    public EngineImpl(){
+    public EngineImpl(UndoManager undoManager){
         this.clipboard = "";
         this.buffer = new StringBuilder();
         selection = new SelectionImpl(buffer);
-
+        this.undoManager = undoManager;
     }
     /**
      * Provides access to the selection control object
@@ -55,11 +56,11 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void cutSelectedText() throws IllegalArgumentException {
+        this.undoManager.store(this);
     	if (selection.getBeginIndex()!=selection.getEndIndex()) {
         	copySelectedText();
         	delete();
     	}
-
     }
 
     /**
@@ -80,6 +81,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void pasteClipboard() throws IllegalArgumentException {
+        this.undoManager.store(this);
     	if (!clipboard.isEmpty()) {
             Integer previousBeginIndex = this.selection.getBeginIndex();
         	this.buffer.replace(selection.getBeginIndex(), selection.getEndIndex(), this.clipboard);
@@ -96,6 +98,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void insert(String s) throws IllegalArgumentException {
+        this.undoManager.store(this);
     	if (s.isEmpty()) {
             throw new IllegalArgumentException("Inserted text cannot be empty");
     	} else {      	
@@ -104,7 +107,6 @@ public class EngineImpl implements Engine {
             this.selection.setEndIndex(previousBeginIndex + s.length());
             this.selection.setBeginIndex(previousBeginIndex + s.length());
     	}
-
     }
 
     /**
@@ -112,6 +114,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void delete() throws IndexOutOfBoundsException {
+        this.undoManager.store(this);
     	
     	if(this.selection.getEndIndex() != this.selection.getBufferBeginIndex()) {
     		
@@ -130,7 +133,6 @@ public class EngineImpl implements Engine {
         		
         	}    		
     	}
-
     }
     
     /**
@@ -153,7 +155,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public Memento getMemento(){
-        return new EditorMemento(this.buffer, this.selection.getBeginIndex(), this.selection.getEndIndex());
+        return new EditorMemento(this.buffer.toString(), this.selection.getBeginIndex(), this.selection.getEndIndex());
     }
 
     /**
@@ -162,7 +164,7 @@ public class EngineImpl implements Engine {
      */
     @Override
     public void setMemento(Memento memento){
-        this.buffer = ((EditorMemento)memento).getBufferContent();
+        this.buffer.replace(0, this.buffer.length(), (((EditorMemento)memento).getBufferContent()));
         this.selectionChange(((EditorMemento)memento).getBeginIndex(), ((EditorMemento)memento).getEndIndex());
     }
 

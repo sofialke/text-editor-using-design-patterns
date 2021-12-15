@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class EngineTest {
 
     private Engine engine;
+    private UndoManager undoManager;
     private static String TEST_STRING = "This is a test string that will be asserted";
     private static String EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX = "Begin index can't be bigger than end index";
     private static String EXCEPTION_MESSAGE_WRONG_END_INDEX = "End index can't be smaller than end index";
@@ -19,7 +20,7 @@ class EngineTest {
     
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
-        engine = new EngineImpl();
+        engine = new EngineImpl(undoManager);
     }
 
     //private void todo() {

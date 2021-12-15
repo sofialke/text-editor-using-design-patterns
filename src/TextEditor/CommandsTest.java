@@ -9,10 +9,12 @@ class CommandsTest {
     private Engine engine;
     private Invoker invoker;
     private static String TEST_STRING = "This is a test string that will be asserted";
+    private UndoManager undoManager;
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
-        engine = new EngineImpl();
+        undoManager = new UndoManager();
+        engine = new EngineImpl(undoManager);
         invoker = new InvokerImpl(engine);
     }
 

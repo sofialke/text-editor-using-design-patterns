@@ -1,5 +1,6 @@
 package TextEditor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,42 +12,42 @@ public class UndoManager {
 
     private List<Memento> pastStates;
     private List<Memento> futureStates;
-    private Engine engine;
 
     /**
      * Constructor for the UndoManager with engine as a parameter
      * @param engine- EngineImpl instance.
      */
-    public UndoManager(Engine engine){
-        this.engine = engine;
+    public UndoManager(){
+        pastStates = new ArrayList<Memento>();
+        futureStates = new ArrayList<Memento>();
     }
 
     /**
      * Method that stores the current memento state in the list.
      */
-    public void store(){
-        Memento memento = this.engine.getMemento();
+    public void store(Engine engine){
+        Memento memento = engine.getMemento();
         this.pastStates.add(memento);
     }
 
     /**
-     * Method that undo's the last change in the engine.
+     * Method that un-dos the last change in the engine.
      */
-    public void undo(){
-        Memento currentMemento = this.engine.getMemento();
+    public void undo(Engine engine){
+        Memento currentMemento = engine.getMemento();
         Memento pastMemento = pastStates.get(pastStates.size()-1);
         this.futureStates.add(currentMemento);
-        this.engine.setMemento(pastMemento);
+        engine.setMemento(pastMemento);
         this.pastStates.remove(pastMemento);
     }
 
     /**
-     * Method that redo's the last change in the engine.
+     * Method that re-dos the last change in the engine.
      */
-    public void redo(){
-        Memento currentMemento = this.engine.getMemento();
+    public void redo(Engine engine){
+        Memento currentMemento = engine.getMemento();
         Memento futureMemento = this.futureStates.get(futureStates.size()-1);
-        this.engine.setMemento(futureMemento);
+        engine.setMemento(futureMemento);
         this.pastStates.add(currentMemento);
         this.futureStates.remove(futureMemento);
     }
