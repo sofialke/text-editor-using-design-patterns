@@ -36,22 +36,4 @@ public class SelectionMemento implements Memento {
 	public int getEndIndex() {
 		return endIndex;
 	}
-	
-	/**
-	 * Changes the beginIndex of the selection memento
-	 * 
-	 * @param beginIndex begin index of the selection memento
-	 */
-	public void setBeginIndex(int beginIndex) {
-		this.beginIndex = beginIndex;
-	}
-	
-	/**
-	 * Changes the end index of the selection memento
-	 * 
-	 * @param endIndex end index of the selection memento
-	 */
-	public void setEndIndex(int endIndex) {
-		this.endIndex = endIndex;
-	}
 }
