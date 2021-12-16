@@ -20,12 +20,12 @@ class EngineTest {
     
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
+        undoManager = new UndoManager();
         engine = new EngineImpl(undoManager);
+
     }
 
-    //private void todo() {
-    //    fail("Unimplemented test");
-    //}
+
     @Test
     @DisplayName("Buffer must be empty after initialisation")
     void getInitialSelection() {
