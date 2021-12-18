@@ -12,10 +12,10 @@ public class PasteCommand implements Recordable{
 
     /**
      * PasteCommand constructor that initializes a paste command instance
-     * 
-     * @param engine 
-     * @param invoker
-     * @param recorder
+     *
+     * @param engine EngineImpl instance used for initiating command instance.
+     * @param invoker InvokerImpl instance used for initiating command instance.
+     * @param recorder InvokerImpl instance used for initiating command instance.
      */
     public PasteCommand(Engine engine, Invoker invoker, Recorder recorder){
         this.engine = engine;

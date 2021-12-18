@@ -12,10 +12,10 @@ public class CopyCommand implements Recordable{
 
     /**
      * CopyCommand constructor that initializes a copy command instance
-     * 
-     * @param engine
-     * @param invoker
-     * @param recorder
+     *
+     * @param engine engine class instance used for initiating command instance.
+     * @param invoker invoker class  instance used for initiating command instance.
+     * @param recorder recorder class  instance used for initiating command instance.
      */
     public CopyCommand(Engine engine, Invoker invoker, Recorder recorder){
         this.engine = engine;

@@ -15,10 +15,10 @@ public class InsertCommand implements Recordable{
 
     /**
      * InsertCommand constructor that initializes an insert command instance
-     * 
-     * @param engine
-     * @param invoker
-     * @param recorder
+     *
+     * @param engine Engine class instance used for initiating command instance.
+     * @param invoker Invoker class instance used for initiating command instance.
+     * @param recorder Recorder class instance used for initiating command instance.
      */
     public InsertCommand(Engine engine, Invoker invoker, Recorder recorder){
         this.engine = engine;

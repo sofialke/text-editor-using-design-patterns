@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Tag;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Test class testing InvokerImpl class.
+ */
 public class InvokerTest {
     private Engine engine;
     private Invoker invoker;

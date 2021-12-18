@@ -12,10 +12,10 @@ public class DeleteCommand implements Recordable{
 
     /**
      * DeleteCommand constructor that initializes a delete command instance
-     * 
-     * @param engine
-     * @param invoker
-     * @param recorder
+     *
+     * @param engine engine class instance used for initiating command instance.
+     * @param invoker invoker class instance used for initiating command instance.
+     * @param recorder recorder class instance used for initiating command instance.
      */
     public DeleteCommand(Engine engine, Invoker invoker, Recorder recorder){
         this.engine = engine;
