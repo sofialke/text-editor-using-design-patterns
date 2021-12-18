@@ -2,9 +2,6 @@ package TextEditor;
 
 /**
  * Provides access to selection control operations
- *
- * @author plouzeau
- * @version 1.0
  */
 public interface Selection {
 
@@ -12,7 +9,7 @@ public interface Selection {
      * Provides the index of the first character designated
      * by the selection.
      *
-     * @return
+     * @return Integer value of buffer's Begin Index
      */
     int getBeginIndex();
 

@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+/**
+ * SelectionTest- test class which runs tests on the Selection class.
+ */
 public class SelectionTest {
     private Engine engine;
     private static String TEST_STRING = "This is a test string that will be asserted";

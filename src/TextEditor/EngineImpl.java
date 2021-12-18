@@ -1,5 +1,8 @@
 package TextEditor;
 
+/**
+ * EngineImpl class implementing Engine Interface.
+ */
 public class EngineImpl implements Engine {
 
     private StringBuilder buffer;
