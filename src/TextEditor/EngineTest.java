@@ -158,33 +158,7 @@ class EngineTest {
         Exception exception = assertThrows(IndexOutOfBoundsException.class, () ->
                 selection.setEndIndex(-1));
         assertEquals(EXCEPTION_MESSAGE_WRONG_END_INDEX, exception.getMessage());
-    }
-    
-    @Test
-    @Tag("Robustness")
-    void testExceptionForEmptySelectionCopy(){
-        engine.insert(TEST_STRING);
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-                engine.copySelectedText());
-        assertEquals(EXCEPTION_MESSAGE_EMPTY_SELECTION, exception.getMessage()); 
-    }
-    
-    @Test
-    @Tag("Robustness")
-    void testExceptionForEmptySelectionCut(){
-        engine.insert(TEST_STRING);
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-                engine.cutSelectedText());
-        assertEquals(EXCEPTION_MESSAGE_EMPTY_SELECTION, exception.getMessage()); 
-    }
-    
-    @Test
-    @Tag("Robustness")
-    void testExceptionForEmptyClipboardPaste(){
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-                engine.pasteClipboard());
-        assertEquals(EXCEPTION_MESSAGE_EMPTY_CLIPBOARD, exception.getMessage()); 
-    }
+    } 
     
     @Test
     @Tag("Robustness")
@@ -194,13 +168,6 @@ class EngineTest {
                 engine.insert(s));
         assertEquals(EXCEPTION_MESSAGE_EMPTY_INSERTED_TEXT, exception.getMessage()); 
     }
-    
-    @Test
-    @Tag("Robustness")
-    void testExceptionForDeleteAtBegginingOfBuffer(){
-        Exception exception = assertThrows(IndexOutOfBoundsException.class, () ->
-                engine.delete());
-        assertEquals(EXCEPTION_MESSAGE_WRONG_INDEX_FOR_DELETE, exception.getMessage()); 
-    }
+  
 
 }
