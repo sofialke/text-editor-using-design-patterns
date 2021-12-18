@@ -10,23 +10,12 @@ public class InvokerTest {
     private Invoker invoker;
     private Recorder recorder;
     private static String TEST_STRING = "This is a test string that will be asserted";
-    private static String EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX = "Begin index can't be bigger than end index";
-    private static String EXCEPTION_MESSAGE_WRONG_END_INDEX = "End index can't be smaller than end index";
-    private static String EXCEPTION_MESSAGE_BEGIN_INDEX_SMALLER_THAN_ZERO = "Begin index can't be smaller than 0";
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
         engine = new EngineImpl();
         invoker = new InvokerImpl(engine);
         recorder = new Recorder();
-//        invoker.addCommand("C", new CopyCommand(engine, this.invoker));
-//        invoker.addCommand("CU", new CutCommand(engine, this.invoker));
-//        invoker.addCommand("S", new SelectionCommand(engine, this.invoker));
-//        invoker.addCommand("D", new DeleteCommand(engine, this.invoker));
-//        invoker.addCommand("P", new PasteCommand(engine, this.invoker));
-//        invoker.addCommand("R", new Replay(engine));
-        //recorder should be one of the parameters when creating a command!!!
-        //recorder is a  receiver like engine - we should create it here and send it to the commands when we create them
     }
 
     @Test
