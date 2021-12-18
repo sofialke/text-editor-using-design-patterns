@@ -153,20 +153,18 @@ class EngineTest {
         Selection selection = engine.getSelection();
         selection.setBeginIndex(1);
         Exception exception1 = assertThrows(IndexOutOfBoundsException.class, () -> selection.setEndIndex(0));
-        assertEquals(EXCEPTION_MESSAGE_WRONG_END_INDEX, exception1.getMessage()); //TODO - define what should be a message of this exception
+        assertEquals(EXCEPTION_MESSAGE_WRONG_END_INDEX, exception1.getMessage());
     }
 
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
+    @Tag("Robustness")
     void testExceptionForEndIndexBeingSmallerThanBeginIndex(){
-        //Write a test case which puts a beginIndex value before the index value of a buffer and check if exception is
-        //thrown correctly. the same for end Index @Tag("Robustness")
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         selection.setBeginIndex(0);
         selection.setEndIndex(5);
         Exception exception2 = assertThrows(IndexOutOfBoundsException.class, () -> selection.setBeginIndex(6));
-        assertEquals(EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX, exception2.getMessage()); //TODO - define what should be a message of this exception
+        assertEquals(EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX, exception2.getMessage());
     }
 
     @Test
@@ -175,7 +173,7 @@ class EngineTest {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         Exception exception1 = assertThrows(IndexOutOfBoundsException.class, () -> selection.setBeginIndex(-1));
-        assertEquals(EXCEPTION_MESSAGE_BEGIN_INDEX_SMALLER_THAN_ZERO, exception1.getMessage()); //TODO - define what should be a message of this exception
+        assertEquals(EXCEPTION_MESSAGE_BEGIN_INDEX_SMALLER_THAN_ZERO, exception1.getMessage());
     }
 
     @Test
@@ -185,7 +183,7 @@ class EngineTest {
         Selection selection = engine.getSelection();
         Exception exception = assertThrows(IndexOutOfBoundsException.class, () ->
                 selection.setEndIndex(-1));
-        assertEquals(EXCEPTION_MESSAGE_WRONG_END_INDEX, exception.getMessage()); //TODO- -define what should be a message of this exception
+        assertEquals(EXCEPTION_MESSAGE_WRONG_END_INDEX, exception.getMessage());
     }
     
     @Test
