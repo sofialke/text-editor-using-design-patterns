@@ -16,16 +16,15 @@ public class SelectionTest {
     }
     
     @Test
-    void getBufferBeginIndex() {
+    void testGetBufferBeginIndex() {
         Selection selection = engine.getSelection();
         assertEquals(selection.getBufferBeginIndex(),0);
         engine.insert(TEST_STRING);
         assertEquals(selection.getBufferBeginIndex(),0);
     }
     
-    
     @Test
-    void getBufferEndIndex() {
+    void testGetBufferEndIndex() {
         Selection selection = engine.getSelection();
         assertEquals(selection.getBufferEndIndex(),0);
         engine.insert(TEST_STRING);
