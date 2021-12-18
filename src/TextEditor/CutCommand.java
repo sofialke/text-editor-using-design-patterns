@@ -12,9 +12,9 @@ public class CutCommand implements Recordable{
 
     /**
      * CutCommand constructor that initializes a cut command instance
-     * @param engine
-     * @param invoker
-     * @param recorder
+     * @param engine engine class instance used for initiating command instance.
+     * @param invoker invoker class instance used for initiating command instance.
+     * @param recorder recorder class instance used for initiating command instance.
      */
     public CutCommand(Engine engine, Invoker invoker, Recorder recorder){
         this.engine = engine;

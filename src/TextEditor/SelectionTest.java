@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Tag;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+/**
+ * SelectionTest- test class which runs tests on the Selection class.
+ */
 public class SelectionTest {
     private Engine engine;
     private UndoManager undoManager;

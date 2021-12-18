@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test class running tests of UndoManager class.
+ */
 public class UndoManagerTest {
     private Engine engine;
     private Invoker invoker;

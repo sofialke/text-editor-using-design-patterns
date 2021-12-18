@@ -3,6 +3,9 @@ package TextEditor;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Recorder class - caretaker in memento design pattern for Commands.
+ */
 public class Recorder {
 		
 	private Optional<Memento> memento;
@@ -17,7 +20,7 @@ public class Recorder {
 	/**
 	 * A method to save a command.
 	 * Precondition - input parameter cannot be null.
-	 * @param command
+	 * @param command Command instance.
 	 */
 	public void save(Recordable command) {
 		Objects.requireNonNull(command);

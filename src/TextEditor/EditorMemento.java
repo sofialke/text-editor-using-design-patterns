@@ -39,7 +39,7 @@ public class EditorMemento implements Memento{
 
 	/**
 	 * Method to get end index of the current engine state.
-	 * @return
+	 * @return Interger value of memento's end index value.
 	 */
 	public int getEndIndex() {
 		return endIndex;

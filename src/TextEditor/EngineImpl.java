@@ -1,5 +1,8 @@
 package TextEditor;
 
+/**
+ * EngineImpl class implementing Engine Interface.
+ */
 public class EngineImpl implements Engine {
 
     private StringBuilder buffer;
@@ -10,7 +13,7 @@ public class EngineImpl implements Engine {
     /**
      * EngineImpl constructor that initializes Selection class using implemented Selection class constructor.
      * 
-     * @param undoManager 
+     * @param undoManager undoManager class instance used for initiating command instance.
      */
     public EngineImpl(UndoManager undoManager){
         this.clipboard = "";

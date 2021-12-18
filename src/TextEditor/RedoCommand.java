@@ -2,6 +2,9 @@ package TextEditor;
 
 import java.util.Optional;
 
+/**
+ * RedoCommand class implementing Recordable interface.
+ */
 public class RedoCommand implements Recordable {
     private Engine engine;
     private UndoManager undomanager;
@@ -9,9 +12,9 @@ public class RedoCommand implements Recordable {
     /**
      * RedoCommand constructor that initializes a redo command instance
      * 
-     * @param engine
-     * @param invoker
-     * @param undomanager
+     * @param engine EngineImpl instance used for initiating command instance.
+     * @param invoker InvokerImpl instance used for initiating command instance.
+     * @param undomanager UndoManager instance used for initiating command instance.
      */
     public RedoCommand(Engine engine, Invoker invoker, UndoManager undomanager){
         this.undomanager = undomanager;

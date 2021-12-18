@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * InvokerImpl class implementing Invoker interface.
+ */
 public class InvokerImpl implements Invoker{
 
     private Engine engine;
@@ -17,9 +20,10 @@ public class InvokerImpl implements Invoker{
 
     /**
      * Invoker constructor that initializes an Invoker instance
-     * It has a mapOfCommands Map attribute that contains instances of commands with a string as key representig the type of command
+     * It has a mapOfCommands Map attribute that contains instances of commands with a string as key representig
+     * the type of command
      * 
-     * @param engineInput
+     * @param engineInput Engine class instance used for initiating invoker instance.
      */
     public InvokerImpl(Engine engineInput){
         this.engine = engineInput;
@@ -85,7 +89,7 @@ public class InvokerImpl implements Invoker{
     /**
      * Changes the value of the end index
      * 
-     * @param text - new value to be set
+     * @param index - new value to be set
      */
     public void setEndIndex(Integer index){
         this.endIndex = index;
@@ -94,7 +98,7 @@ public class InvokerImpl implements Invoker{
     /**
      * Executed the command in the map that belongs to the specific key
      * 
-     * @param keyname - string key representing a command
+     * @param keyName - string key representing a command
      */
     public void execute(String keyName){
         mapOfCOmmands.get(keyName).execute();

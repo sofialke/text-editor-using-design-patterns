@@ -38,13 +38,13 @@ public interface Invoker {
 
     /**
      * Changes the value of the end index
-     * @param text - new value to be set
+     * @param index - new value to be set
      */
     void setEndIndex(Integer index);
-    
+
     /**
      * Executed the command in the map that belongs to the specific key
-     * @param keyname - string key representing a command
+     * @param keyName - string key representing a command
      */
     void execute(String keyName);
     

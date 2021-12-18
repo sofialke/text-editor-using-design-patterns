@@ -14,9 +14,9 @@ public class SelectionCommand implements Recordable{
     /**
      * SelectioCommand constructor that initializes a selection change command
      * 
-     * @param engine
-     * @param invoker
-     * @param recorder
+     * @param engine EngineImpl instance used for initiating command instance.
+     * @param invoker InvokerImpl instance used for initiating command instance.
+     * @param recorder Recorder instance used for initiating command instance.
      */
     public SelectionCommand(Engine engine, Invoker invoker, Recorder recorder){
     	this.engine = engine;

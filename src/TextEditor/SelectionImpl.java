@@ -1,5 +1,8 @@
 package TextEditor;
 
+/**
+ * SelectionImpl class implementing Selection interface. Used for keeping track of the current selection in the buffer.
+ */
 public class SelectionImpl implements Selection{
 
     private StringBuilder buffer;
@@ -9,6 +12,7 @@ public class SelectionImpl implements Selection{
 
     /**
      * Selection constructor which sets the beginIndex and endIndex to 0.
+     * @param buffer Stringbuilder value of the buffer's content.
      */
     public SelectionImpl(StringBuilder buffer){
     	this.buffer = buffer;
