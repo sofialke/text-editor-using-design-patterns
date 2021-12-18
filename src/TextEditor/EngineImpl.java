@@ -128,7 +128,8 @@ public class EngineImpl implements Engine {
     @Override
     public void delete() throws IndexOutOfBoundsException {
     	
-    	if(this.selection.getBeginIndex() == this.selection.getBufferBeginIndex() && this.selection.getBeginIndex() == this.selection.getEndIndex()) {
+    	if(this.selection.getBeginIndex() == this.selection.getBufferBeginIndex() &&
+                this.selection.getBeginIndex() == this.selection.getEndIndex()) {
     		throw new IndexOutOfBoundsException("You cannot delete at the beginning of the buffer");
     	} else {
     		
@@ -162,9 +163,5 @@ public class EngineImpl implements Engine {
     	selection.setEndIndex(endIndex);
     	selection.setBeginIndex(beginIndex);
     }
-
-    
-
-
 }
 

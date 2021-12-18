@@ -1,8 +1,6 @@
 package TextEditor;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Tag;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -14,22 +12,20 @@ public class SelectionTest {
     void setUp() {
         engine = new EngineImpl();
     }
-    
+
     @Test
-    void getBufferBeginIndex() {
+    void testGetBufferBeginIndex() {
         Selection selection = engine.getSelection();
         assertEquals(selection.getBufferBeginIndex(),0);
         engine.insert(TEST_STRING);
         assertEquals(selection.getBufferBeginIndex(),0);
     }
-    
-    
+
     @Test
-    void getBufferEndIndex() {
+    void testGetBufferEndIndex() {
         Selection selection = engine.getSelection();
         assertEquals(selection.getBufferEndIndex(),0);
         engine.insert(TEST_STRING);
         assertEquals(selection.getBufferEndIndex(),TEST_STRING.length());
     }
-
 }

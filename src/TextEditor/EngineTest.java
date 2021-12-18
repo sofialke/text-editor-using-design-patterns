@@ -26,20 +26,20 @@ class EngineTest {
 
     @Test
     @DisplayName("Buffer must be empty after initialisation")
-    void getInitialSelection() {
+    void testGetInitialSelection() {
         Selection selection = engine.getSelection();
         assertEquals(selection.getBufferBeginIndex(),selection.getBeginIndex());
         assertEquals("",engine.getBufferContents());
     }
 
     @Test
-    void getBufferContents() {
+    void testGetBufferContents() {
         engine.insert(TEST_STRING);
         assertEquals(TEST_STRING, engine.getBufferContents());
     }
     
     @Test 
-    void deleteBuffer() {
+    void testDeleteBuffer() {
     	 engine.insert(TEST_STRING);
          Selection selection = engine.getSelection();
          selection.setBeginIndex(0);
@@ -49,7 +49,7 @@ class EngineTest {
     	}
     
     @Test 
-    void deleteWithNoSelection() {
+    void testDeleteWithNoSelection() {
         engine.insert(TEST_STRING);
     	engine.delete();
         assertEquals("This is a test string that will be asserte", engine.getBufferContents());
@@ -67,7 +67,7 @@ class EngineTest {
 
 
     @Test
-    void getClipboardContents() {
+    void testGetClipboardContents() {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         selection.setBeginIndex(0);
@@ -77,7 +77,7 @@ class EngineTest {
     }
 
     @Test
-    void cutSelectedText() {
+    void testCutSelectedText() {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         selection.setBeginIndex(0);
@@ -88,7 +88,7 @@ class EngineTest {
     }
 
     @Test
-    void copySelectedText() {
+    void testCopySelectedText() {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         selection.setBeginIndex(0);
@@ -99,7 +99,7 @@ class EngineTest {
     }
 
     @Test
-    void pasteClipboard() {
+    void testPasteClipboard() {
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         selection.setBeginIndex(0);
@@ -110,7 +110,7 @@ class EngineTest {
     }
     
     @Test
-    void selectionChange() {
+    void testSelectionChange() {
     	engine.insert(TEST_STRING);
     	engine.selectionChange(3, 9);
         assertEquals(3, engine.getSelection().getBeginIndex());
@@ -119,60 +119,50 @@ class EngineTest {
 
 
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
-    void exceptionTestingForBeginIndexBeingBiggerThanEndIndex(){
-        //Write a test class which puts a beginIndex value before the index value of a buffer and check if exception is
-        //thrown correctly. the same for end Index @Tag("Robustness")
+    @Tag("Robustness")
+    void testExceptionForBeginIndexBeingBiggerThanEndIndex(){
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         selection.setBeginIndex(1);
         Exception exception1 = assertThrows(IndexOutOfBoundsException.class, () -> selection.setEndIndex(0));
-        assertEquals(EXCEPTION_MESSAGE_WRONG_END_INDEX, exception1.getMessage()); //TODO - define what should be a message of this exception
+        assertEquals(EXCEPTION_MESSAGE_WRONG_END_INDEX, exception1.getMessage());
     }
 
 
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
-    void exceptionTestingForEndIndexBeingSmallerThanBeginIndex(){
-        //Write a test class which puts a beginIndex value before the index value of a buffer and check if exception is
-        //thrown correctly. the same for end Index @Tag("Robustness")
+    @Tag("Robustness")
+    void testExceptionForEndIndexBeingSmallerThanBeginIndex(){
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         selection.setBeginIndex(0);
         selection.setEndIndex(5);
         Exception exception2 = assertThrows(IndexOutOfBoundsException.class, () -> selection.setBeginIndex(6));
-        assertEquals(EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX, exception2.getMessage()); //TODO - define what should be a message of this exception
+        assertEquals(EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX, exception2.getMessage());
     }
 
 
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
-    void exceptionTestingForBeforeIndex(){
-        //Write a test class which puts a beginIndex value before the index value of a buffer and check if exception is
-        //thrown correctly. the same for end Index @Tag("Robustness")
+    @Tag("Robustness")
+    void testExceptionForBeforeIndex(){
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         Exception exception1 = assertThrows(IndexOutOfBoundsException.class, () -> selection.setBeginIndex(-1));
-        assertEquals(EXCEPTION_MESSAGE_BEGIN_INDEX_SMALLER_THAN_ZERO, exception1.getMessage()); //TODO - define what should be a message of this exception
+        assertEquals(EXCEPTION_MESSAGE_BEGIN_INDEX_SMALLER_THAN_ZERO, exception1.getMessage());
     }
 
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
-    void exceptionTestingForEndIndex(){
-        //Write a test class which puts a beginIndex value end the index value of a buffer and check if exception is
-        //thrown correctly. the same for end Index @Tag("Robustness")
+    @Tag("Robustness")
+    void testExceptionForEndIndex(){
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         Exception exception = assertThrows(IndexOutOfBoundsException.class, () ->
                 selection.setEndIndex(-1));
-        assertEquals(EXCEPTION_MESSAGE_WRONG_END_INDEX, exception.getMessage()); //TODO- -define what should be a message of this exception
+        assertEquals(EXCEPTION_MESSAGE_WRONG_END_INDEX, exception.getMessage());
     }
     
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
-    void exceptionTestingForEmptySelectionCopy(){
-        //Write a test case which tries to copy an empty selection and check if exception is
-        //thrown correctly.
+    @Tag("Robustness")
+    void testExceptionForEmptySelectionCopy(){
         engine.insert(TEST_STRING);
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 engine.copySelectedText());
@@ -180,10 +170,8 @@ class EngineTest {
     }
     
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
-    void exceptionTestingForEmptySelectionCut(){
-        //Write a test case which tries to cut an empty selection and check if exception is
-        //thrown correctly.
+    @Tag("Robustness")
+    void testExceptionForEmptySelectionCut(){
         engine.insert(TEST_STRING);
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 engine.cutSelectedText());
@@ -191,20 +179,16 @@ class EngineTest {
     }
     
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
-    void exceptionTestingForEmptyClipboardPaste(){
-        //Write a test case which tries to paste with an empty clipboard and check if exception is
-        //thrown correctly.
+    @Tag("Robustness")
+    void testExceptionForEmptyClipboardPaste(){
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 engine.pasteClipboard());
         assertEquals(EXCEPTION_MESSAGE_EMPTY_CLIPBOARD, exception.getMessage()); 
     }
     
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
-    void exceptionTestingForEmptyInsert(){
-        //Write a test case which tries to insert an empty text and check if exception is
-        //thrown correctly.
+    @Tag("Robustness")
+    void testExceptionForEmptyInsert(){
     	String s = "";
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 engine.insert(s));
@@ -212,10 +196,8 @@ class EngineTest {
     }
     
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
-    void exceptionTestingForDeleteAtBegginingOfBuffer(){
-        //Write a test case which tries to delete at the beggining of the buffer 
-        //and check if exception is thrown correctly.
+    @Tag("Robustness")
+    void testExceptionForDeleteAtBegginingOfBuffer(){
         Exception exception = assertThrows(IndexOutOfBoundsException.class, () ->
                 engine.delete());
         assertEquals(EXCEPTION_MESSAGE_WRONG_INDEX_FOR_DELETE, exception.getMessage()); 
