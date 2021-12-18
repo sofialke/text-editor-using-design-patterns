@@ -1,0 +1,26 @@
+
+s
+java:S3008"VRename this field "TEST_STRING" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“ώΣ8΅όλκά/
+
+java:S3008"nRename this field "EXCEPTION_MESSAGE_WRONG_BEGIN_INDEX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ϊ―Ξ»ϋÿÿÿÿ8΅όλκά/
+
+java:S3008"lRename this field "EXCEPTION_MESSAGE_WRONG_END_INDEX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•Ό„§ψÿÿÿÿ8΅όλκά/
+—
+java:S3008"zRename this field "EXCEPTION_MESSAGE_BEGIN_INDEX_SMALLER_THAN_ZERO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ΚΚ­8΅όλκά/
+‰
+java:S3008"lRename this field "EXCEPTION_MESSAGE_EMPTY_SELECTION" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²άω8΅όλκά/
+‰
+java:S3008"lRename this field "EXCEPTION_MESSAGE_EMPTY_CLIPBOARD" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»΄΅€8΅όλκά/
+’
+java:S3008"pRename this field "EXCEPTION_MESSAGE_EMPTY_INSERTED_TEXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(βιό‰ϋÿÿÿÿ8΅όλκά/
+•
+java:S3008"sRename this field "EXCEPTION_MESSAGE_WRONG_INDEX_FOR_DELETE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(λ›ς–ÿÿÿÿÿ8΅όλκά/
+M
+java:S5960"+Remove this assertion from production code.(®Ίξλύÿÿÿÿ8®όλκά/
+b
+java:S1068"ERemove this unused "EXCEPTION_MESSAGE_EMPTY_SELECTION" private field.(²άω8®όλκά/
+b
+java:S1068"ERemove this unused "EXCEPTION_MESSAGE_EMPTY_CLIPBOARD" private field.(»΄΅€8―όλκά/
+n
+java:S1068"LRemove this unused "EXCEPTION_MESSAGE_WRONG_INDEX_FOR_DELETE" private field.(λ›ς–ÿÿÿÿÿ8―όλκά/
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Μ‘χ‡ωÿÿÿÿ
