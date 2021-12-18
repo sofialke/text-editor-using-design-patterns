@@ -22,9 +22,6 @@ class EngineTest {
         engine = new EngineImpl();
     }
 
-    //private void todo() {
-    //    fail("Unimplemented test");
-    //}
     @Test
     @DisplayName("Buffer must be empty after initialisation")
     void testGetInitialSelection() {
@@ -56,7 +53,7 @@ class EngineTest {
     	engine.delete();
         assertEquals("", engine.getBufferContents());
     	}
-        
+
     @Test 
     void testDeleteWithNoSelection() {
         engine.insert(TEST_STRING);
@@ -150,10 +147,8 @@ class EngineTest {
     }
 
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
+    @Tag("Robustness")
     void testExceptionForBeginIndexBeingBiggerThanEndIndex(){
-        //Write a test case which puts a beginIndex value before the index value of a buffer and check if exception is
-        //thrown correctly. the same for end Index @Tag("Robustness")
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         selection.setBeginIndex(1);
@@ -175,10 +170,8 @@ class EngineTest {
     }
 
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
+    @Tag("Robustness")
     void testExceptionForBeforeIndex(){
-        //Write a test case which puts a beginIndex value before the index value of a buffer and check if exception is
-        //thrown correctly. the same for end Index @Tag("Robustness")
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         Exception exception1 = assertThrows(IndexOutOfBoundsException.class, () -> selection.setBeginIndex(-1));
@@ -186,10 +179,8 @@ class EngineTest {
     }
 
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
+    @Tag("Robustness")
     void testExceptionForEndIndex(){
-        //Write a test case which puts a beginIndex value end the index value of a buffer and check if exception is
-        //thrown correctly. the same for end Index @Tag("Robustness")
         engine.insert(TEST_STRING);
         Selection selection = engine.getSelection();
         Exception exception = assertThrows(IndexOutOfBoundsException.class, () ->
@@ -198,10 +189,8 @@ class EngineTest {
     }
     
     @Test
-    @Tag("Robustness") //needs importing a tag junit library
+    @Tag("Robustness")
     void testExceptionForEmptyInsert(){
-        //Write a test case which tries to insert an empty text and check if exception is
-        //thrown correctly.
     	String s = "";
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 engine.insert(s));
